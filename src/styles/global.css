@@ -291,6 +291,17 @@ main {
 	padding-top: 1em;
 }
 
+/* Shiki dual-theme: dark é default; light entra quando .light está na root */
+.astro-code,
+.astro-code span {
+	color: var(--shiki-dark) !important;
+}
+
+:root.light .astro-code,
+:root.light .astro-code span {
+	color: var(--shiki-light) !important;
+}
+
 .prose img {
 	max-width: 100%;
 	height: auto;
