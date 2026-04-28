@@ -1,0 +1,21 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { url } from '../utils/url';
+---
+
+<header class="border-b border-[color:var(--color-border)]">
+	<nav class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4">
+		<a href={url('/')} class="text-lg font-bold tracking-tight hover:text-[color:var(--color-accent)]">
+			{SITE_TITLE}
+		</a>
+		<div class="flex items-center gap-4">
+			<HeaderLink href={url('/')}>Início</HeaderLink>
+			<HeaderLink href={url('/artigos')}>Artigos</HeaderLink>
+			<HeaderLink href={url('/tags')}>Tags</HeaderLink>
+			<HeaderLink href={url('/sobre')}>Sobre</HeaderLink>
+			<ThemeToggle />
+		</div>
+	</nav>
+</header>

@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagBadge from '../../components/TagBadge.astro';
+
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+	for (const tag of post.data.tags) {
+		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+	}
+}
+const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+
+<BaseLayout title="Tags" description="Todos os assuntos organizados por tag.">
+	<header class="mb-8">
+		<h1 class="text-3xl font-bold tracking-tight">Tags</h1>
+		<p class="mt-2 text-[color:var(--color-muted)]">
+			{tags.length} {tags.length === 1 ? 'tag' : 'tags'} no total.
+		</p>
+	</header>
+	{tags.length === 0 ? (
+		<p class="text-[color:var(--color-muted)]">Nenhuma tag ainda.</p>
+	) : (
+		<div class="flex flex-wrap gap-2">
+			{tags.map(([tag, count]) => <TagBadge tag={tag} count={count} />)}
+		</div>
+	)}
+</BaseLayout>

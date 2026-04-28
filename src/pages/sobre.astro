@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR, AUTHOR_URL } from '../consts';
+import { url } from '../utils/url';
+---
+
+<BaseLayout title="Sobre" description="Quem mantém o Claude Playbook e como uso o Claude no dia a dia.">
+	<article class="prose">
+		<h1>Sobre</h1>
+
+		<p>
+			Sou <strong>{AUTHOR}</strong>, e o <em>Claude Playbook</em> é meu caderno público sobre como tenho usado
+			o Claude no dia a dia — escrevendo código, planejando tarefas, automatizando rotinas.
+		</p>
+
+		<p>
+			A ideia aqui não é vender mágica de IA. É mostrar, com exemplo concreto, o que tem funcionado pra mim,
+			o que <em>não</em> funcionou, e por quê. Cada post é uma técnica, fluxo ou ajuste que valeu a pena registrar.
+		</p>
+
+		<h2>O que você vai encontrar</h2>
+		<ul>
+			<li><strong>Fluxos</strong> — como combino plan mode, hooks e skills no Claude Code</li>
+			<li><strong>Configurações</strong> — settings, permissões e atalhos que economizam tempo</li>
+			<li><strong>Prompts</strong> — padrões de instrução que melhoraram resultados</li>
+			<li><strong>Anti-padrões</strong> — o que parece boa ideia mas atrapalha</li>
+		</ul>
+
+		<h2>Como acompanhar</h2>
+		<ul>
+			<li>Assine o <a href={url('/rss.xml')}>RSS</a> para receber novos posts</li>
+			<li>Código-fonte do site no <a href={AUTHOR_URL} target="_blank" rel="noopener">GitHub</a></li>
+		</ul>
+
+		<h2>Contato</h2>
+		<p>
+			Sugestões, correções ou só pra trocar ideia: abra uma issue no repositório ou me chame pelo GitHub.
+		</p>
+	</article>
+</BaseLayout>

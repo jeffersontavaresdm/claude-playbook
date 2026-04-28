@@ -1,0 +1,17 @@
+---
+import { url } from '../utils/url';
+
+interface Props {
+	tag: string;
+	count?: number;
+}
+const { tag, count } = Astro.props;
+const slug = tag.toLowerCase().replace(/\s+/g, '-');
+---
+
+<a
+	href={url(`/tags/${slug}`)}
+	class="inline-flex items-center gap-1 rounded-full border border-[color:var(--color-border)] px-2.5 py-0.5 text-xs text-[color:var(--color-muted)] transition-colors hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
+>
+	#{tag}{count !== undefined && <span class="text-[color:var(--color-muted)]/70">({count})</span>}
+</a>
