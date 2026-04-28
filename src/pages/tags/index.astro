@@ -13,17 +13,21 @@ for (const post of posts) {
 const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
 
-<BaseLayout title="Tags" description="Todos os assuntos organizados por tag.">
-	<header class="mb-8">
-		<h1 class="text-3xl font-bold tracking-tight">Tags</h1>
-		<p class="mt-2 text-[color:var(--color-muted)]">
-			{tags.length} {tags.length === 1 ? 'tag' : 'tags'} no total.
-		</p>
+<BaseLayout title="tags" description="Todos os assuntos organizados por tag.">
+	<header class="mb-8 reveal">
+		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-prompt)]">$</span> grep -roh <span class="text-[color:var(--color-amber)]">'tags:'</span> artigos/
+		</div>
+		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
+			tags <span class="text-[color:var(--color-muted)]">({tags.length})</span>
+		</h1>
 	</header>
 	{tags.length === 0 ? (
-		<p class="text-[color:var(--color-muted)]">Nenhuma tag ainda.</p>
+		<p class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-amber)]">›</span> nenhuma tag ainda.
+		</p>
 	) : (
-		<div class="flex flex-wrap gap-2">
+		<div class="reveal reveal-delay-1 flex flex-wrap gap-x-4 gap-y-2 rounded border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]/40 p-4">
 			{tags.map(([tag, count]) => <TagBadge tag={tag} count={count} />)}
 		</div>
 	)}

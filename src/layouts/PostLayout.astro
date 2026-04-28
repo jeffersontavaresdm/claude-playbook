@@ -11,9 +11,11 @@ import { url } from '../utils/url';
 
 type Props = CollectionEntry<'posts'>['data'] & {
 	readingTime?: string;
+	slug?: string;
 };
 
-const { title, description, date, updated, cover, tags, readingTime } = Astro.props;
+const { title, description, date, updated, cover, tags, readingTime, slug } = Astro.props;
+const filename = slug ? `${slug}.md` : 'post.md';
 ---
 
 <!doctype html>
@@ -21,41 +23,48 @@ const { title, description, date, updated, cover, tags, readingTime } = Astro.pr
 	<head>
 		<BaseHead title={`${title} · ${SITE_TITLE}`} description={description} />
 	</head>
-	<body class="bg-[color:var(--color-bg)] text-[color:var(--color-fg)] antialiased">
+	<body class="bg-[color:var(--color-bg)] text-[color:var(--color-fg)]">
 		<Header />
 		<main class="mx-auto w-full max-w-3xl px-4 py-10">
 			<article>
-				<header class="mb-8">
-					<h1 class="text-4xl font-bold tracking-tight leading-tight">{title}</h1>
-					<p class="mt-3 text-base text-[color:var(--color-muted)]">{description}</p>
-					<div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-[color:var(--color-muted)]">
-						<FormattedDate date={date} />
-						{readingTime && <span aria-hidden="true">·</span>}
+				<div class="reveal mb-3 font-[family-name:var(--font-mono)] text-xs text-[color:var(--color-muted)]">
+					<span class="text-[color:var(--color-prompt)]">$</span> cat <span class="text-[color:var(--color-amber)]">artigos/{filename}</span>
+				</div>
+				<header class="reveal reveal-delay-1 mb-8 border-b border-dashed border-[color:var(--color-border-strong)] pb-6">
+					<h1 class="font-[family-name:var(--font-mono)] text-3xl font-bold leading-tight tracking-tight text-[color:var(--color-fg-strong)] sm:text-4xl">
+						{title}
+					</h1>
+					<p class="mt-3 text-base leading-relaxed text-[color:var(--color-fg)]/85">{description}</p>
+					<div class="mt-4 flex flex-wrap items-center gap-2 font-[family-name:var(--font-mono)] text-xs text-[color:var(--color-muted)]">
+						<span class="text-[color:var(--color-magenta)]"><FormattedDate date={date} /></span>
+						{readingTime && <span class="text-[color:var(--color-border-strong)]">·</span>}
 						{readingTime && <span>{readingTime}</span>}
-						{updated && <span aria-hidden="true">·</span>}
+						{updated && <span class="text-[color:var(--color-border-strong)]">·</span>}
 						{updated && (
-							<span class="italic">
-								Atualizado em <FormattedDate date={updated} />
+							<span>
+								updated=<FormattedDate date={updated} />
 							</span>
 						)}
 					</div>
 					{tags && tags.length > 0 && (
-						<div class="mt-4 flex flex-wrap gap-2">
+						<div class="mt-3 flex flex-wrap gap-1.5">
 							{tags.map((t) => <TagBadge tag={t} />)}
 						</div>
 					)}
 				</header>
 				{cover && (
 					<div class="mb-8">
-						<Image src={cover} alt="" class="w-full rounded-lg" widths={[480, 800, 1200]} sizes="(min-width: 768px) 720px, 100vw" />
+						<Image src={cover} alt="" class="w-full rounded border border-[color:var(--color-border)]" widths={[480, 800, 1200]} sizes="(min-width: 768px) 720px, 100vw" />
 					</div>
 				)}
-				<div class="prose">
+				<div class="prose reveal reveal-delay-2">
 					<slot />
 				</div>
 			</article>
-			<nav class="mt-12 border-t border-[color:var(--color-border)] pt-6 text-sm">
-				<a href={url('/artigos')} class="text-[color:var(--color-accent)] hover:underline">← Voltar para todos os artigos</a>
+			<nav class="mt-14 border-t border-dashed border-[color:var(--color-border-strong)] pt-6 font-[family-name:var(--font-mono)] text-xs">
+				<a href={url('/artigos')} class="inline-flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-prompt)]">
+					<span class="text-[color:var(--color-prompt)]">$</span> cd <span class="text-[color:var(--color-fg-strong)]">../artigos</span>
+				</a>
 			</nav>
 		</main>
 		<Footer />

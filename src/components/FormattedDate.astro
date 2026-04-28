@@ -1,18 +1,19 @@
 ---
 interface Props {
 	date: Date;
+	format?: 'long' | 'iso';
 }
 
-const { date } = Astro.props;
+const { date, format = 'iso' } = Astro.props;
+const display =
+	format === 'long'
+		? date.toLocaleDateString('pt-BR', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric',
+				timeZone: 'UTC',
+			})
+		: date.toISOString().slice(0, 10);
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('pt-BR', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			timeZone: 'UTC',
-		})
-	}
-</time>
+<time datetime={date.toISOString()}>{display}</time>

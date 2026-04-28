@@ -11,7 +11,7 @@ const slug = tag.toLowerCase().replace(/\s+/g, '-');
 
 <a
 	href={url(`/tags/${slug}`)}
-	class="inline-flex items-center gap-1 rounded-full border border-[color:var(--color-border)] px-2.5 py-0.5 text-xs text-[color:var(--color-muted)] transition-colors hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
+	class="font-[family-name:var(--font-mono)] inline-flex items-center text-xs text-[color:var(--color-muted)] transition-colors hover:text-[color:var(--color-prompt)] hover:[&_.flag]:text-[color:var(--color-prompt)]"
 >
-	#{tag}{count !== undefined && <span class="text-[color:var(--color-muted)]/70">({count})</span>}
+	<span class="flag text-[color:var(--color-amber)]">--tag</span><span class="text-[color:var(--color-muted)]">=</span><span class="text-[color:var(--color-fg)]">{tag}</span>{count !== undefined && <span class="ml-0.5 text-[color:var(--color-muted)]">({count})</span>}
 </a>

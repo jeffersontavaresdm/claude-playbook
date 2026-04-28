@@ -29,15 +29,20 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft && data.ta
 );
 ---
 
-<BaseLayout title={`#${tag}`} description={`Artigos sobre ${tag}`}>
-	<header class="mb-8">
-		<a href={url('/tags')} class="text-sm text-[color:var(--color-accent)] hover:underline">← todas as tags</a>
-		<h1 class="mt-2 text-3xl font-bold tracking-tight">#{tag}</h1>
-		<p class="mt-2 text-[color:var(--color-muted)]">
-			{posts.length} {posts.length === 1 ? 'artigo' : 'artigos'}.
-		</p>
+<BaseLayout title={`--tag=${tag}`} description={`Artigos sobre ${tag}`}>
+	<header class="mb-8 reveal">
+		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-prompt)]">$</span> grep -l <span class="text-[color:var(--color-amber)]">'{tag}'</span> artigos/*.md
+		</div>
+		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
+			<span class="text-[color:var(--color-amber)]">--tag</span><span class="text-[color:var(--color-muted)]">=</span>{tag}
+			<span class="text-[color:var(--color-muted)]">({posts.length})</span>
+		</h1>
+		<a href={url('/tags')} class="mt-2 inline-block font-[family-name:var(--font-mono)] text-xs text-[color:var(--color-muted)] hover:text-[color:var(--color-prompt)]">
+			← cd ../tags
+		</a>
 	</header>
-	<div>
+	<div class="reveal reveal-delay-1">
 		{posts.map((post) => (
 			<PostCard
 				href={url(`/artigos/${post.id}`)}
@@ -45,6 +50,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft && data.ta
 				description={post.data.description}
 				date={post.data.date}
 				tags={post.data.tags}
+				slug={post.id}
 			/>
 		))}
 	</div>

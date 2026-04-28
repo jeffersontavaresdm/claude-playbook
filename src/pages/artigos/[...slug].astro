@@ -18,6 +18,6 @@ const { Content } = await render(post);
 const time = readingTime(post.body ?? '');
 ---
 
-<PostLayout {...post.data} readingTime={time}>
+<PostLayout {...post.data} readingTime={time} slug={post.id}>
 	<Content />
 </PostLayout>

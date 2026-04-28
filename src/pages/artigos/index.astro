@@ -9,17 +9,21 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
 );
 ---
 
-<BaseLayout title="Artigos" description="Todos os artigos do Claude Playbook.">
-	<header class="mb-8">
-		<h1 class="text-3xl font-bold tracking-tight">Artigos</h1>
-		<p class="mt-2 text-[color:var(--color-muted)]">
-			{posts.length} {posts.length === 1 ? 'artigo publicado' : 'artigos publicados'}.
-		</p>
+<BaseLayout title="artigos" description="Todos os artigos do Claude Playbook.">
+	<header class="mb-8 reveal">
+		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-prompt)]">$</span> ls -lt <span class="text-[color:var(--color-amber)]">artigos/</span>
+		</div>
+		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
+			artigos <span class="text-[color:var(--color-muted)]">({posts.length})</span>
+		</h1>
 	</header>
 	{posts.length === 0 ? (
-		<p class="text-[color:var(--color-muted)]">Em breve.</p>
+		<p class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-amber)]">›</span> diretório vazio. em breve.
+		</p>
 	) : (
-		<div>
+		<div class="reveal reveal-delay-1">
 			{posts.map((post) => (
 				<PostCard
 					href={url(`/artigos/${post.id}`)}
@@ -27,6 +31,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
 					description={post.data.description}
 					date={post.data.date}
 					tags={post.data.tags}
+					slug={post.id}
 				/>
 			))}
 		</div>

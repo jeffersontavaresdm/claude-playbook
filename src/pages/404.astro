@@ -3,18 +3,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { url } from '../utils/url';
 ---
 
-<BaseLayout title="Página não encontrada" description="404 — página não encontrada.">
-	<div class="py-16 text-center">
-		<p class="text-6xl font-bold text-[color:var(--color-accent)]">404</p>
-		<h1 class="mt-4 text-2xl font-bold">Página não encontrada</h1>
-		<p class="mt-3 text-[color:var(--color-muted)]">
-			O caminho que você procurou não existe (ou ainda não existe).
+<BaseLayout title="404" description="404 — página não encontrada.">
+	<div class="reveal py-10 text-center font-[family-name:var(--font-mono)]">
+		<pre class="mx-auto inline-block text-left text-xs leading-tight text-[color:var(--color-prompt)] sm:text-sm">{`
+ _  _    ___  _  _
+| || |  / _ \\| || |
+| || |_| | | | || |_
+|__   _| |_| |__   _|
+   |_|  \\___/   |_|
+		`}</pre>
+		<p class="mt-2 text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-red)]">cat: {Astro.url.pathname}: No such file or directory</span>
 		</p>
 		<a
 			href={url('/')}
-			class="mt-6 inline-block rounded-md border border-[color:var(--color-border)] px-4 py-2 text-sm hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent)]"
+			class="mt-8 inline-flex items-center gap-2 rounded border border-[color:var(--color-border-strong)] px-4 py-2 text-sm text-[color:var(--color-fg)] transition-all hover:border-[color:var(--color-prompt)] hover:text-[color:var(--color-prompt)] hover:shadow-[0_0_18px_color-mix(in_oklab,var(--color-prompt)_30%,transparent)]"
 		>
-			← Voltar ao início
+			<span class="text-[color:var(--color-prompt)]">$</span> cd <span class="text-[color:var(--color-fg-strong)]">~/</span>
 		</a>
 	</div>
 </BaseLayout>

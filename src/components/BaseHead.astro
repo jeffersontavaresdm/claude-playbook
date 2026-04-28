@@ -18,12 +18,14 @@ const rssURL = absoluteUrl('/rss.xml', Astro.site);
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#0a0e14" />
 <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
 <link rel="sitemap" href={url('/sitemap-index.xml')} />
 <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={rssURL} />
 <meta name="generator" content={Astro.generator} />
 
-<Font cssVariable="--font-atkinson" preload />
+<Font cssVariable="--font-mono" preload />
+<Font cssVariable="--font-sans" preload />
 
 <link rel="canonical" href={canonicalURL} />
 
@@ -47,7 +49,9 @@ const rssURL = absoluteUrl('/rss.xml', Astro.site);
 <script is:inline>
 	(function () {
 		const stored = localStorage.getItem('theme');
-		const initial = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-		document.documentElement.classList.toggle('dark', initial === 'dark');
+		const initial =
+			stored ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.classList.toggle('light', initial === 'light');
 	})();
 </script>

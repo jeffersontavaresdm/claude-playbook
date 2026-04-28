@@ -5,22 +5,9 @@
 	id="theme-toggle"
 	type="button"
 	aria-label="Alternar tema claro/escuro"
-	class="rounded-md p-2 text-sm transition-colors hover:bg-[color:var(--color-code-bg)]"
+	class="font-[family-name:var(--font-mono)] inline-flex items-center gap-1 rounded border border-[color:var(--color-border-strong)] px-2 py-1 text-xs text-[color:var(--color-muted)] transition-all hover:border-[color:var(--color-prompt)] hover:text-[color:var(--color-prompt)] hover:shadow-[0_0_12px_color-mix(in_oklab,var(--color-prompt)_25%,transparent)]"
 >
-	<svg id="theme-toggle-light-icon" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-		<circle cx="12" cy="12" r="5"></circle>
-		<line x1="12" y1="1" x2="12" y2="3"></line>
-		<line x1="12" y1="21" x2="12" y2="23"></line>
-		<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-		<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-		<line x1="1" y1="12" x2="3" y2="12"></line>
-		<line x1="21" y1="12" x2="23" y2="12"></line>
-		<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-		<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-	</svg>
-	<svg id="theme-toggle-dark-icon" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-		<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-	</svg>
+	<span class="text-[color:var(--color-border-strong)] inline-block group-hover:text-[color:var(--color-prompt)]">--theme=</span><span id="theme-toggle-label">dark</span>
 </button>
 
 <script is:inline>
@@ -28,30 +15,27 @@
 		const STORAGE_KEY = 'theme';
 		const root = document.documentElement;
 		const button = document.getElementById('theme-toggle');
-		const lightIcon = document.getElementById('theme-toggle-light-icon');
-		const darkIcon = document.getElementById('theme-toggle-dark-icon');
+		const label = document.getElementById('theme-toggle-label');
 
-		function applyIcon(theme) {
-			if (!lightIcon || !darkIcon) return;
-			if (theme === 'dark') {
-				lightIcon.classList.remove('hidden');
-				darkIcon.classList.add('hidden');
-			} else {
-				darkIcon.classList.remove('hidden');
-				lightIcon.classList.add('hidden');
-			}
+		function getCurrentTheme() {
+			return root.classList.contains('light') ? 'light' : 'dark';
+		}
+		function applyTheme(theme) {
+			root.classList.toggle('light', theme === 'light');
+			if (label) label.textContent = theme;
 		}
 
 		const stored = localStorage.getItem(STORAGE_KEY);
-		const initial = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-		root.classList.toggle('dark', initial === 'dark');
-		applyIcon(initial);
+		const initial =
+			stored ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		applyTheme(initial);
 
 		if (button) {
 			button.addEventListener('click', () => {
-				const next = root.classList.toggle('dark') ? 'dark' : 'light';
+				const next = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+				applyTheme(next);
 				localStorage.setItem(STORAGE_KEY, next);
-				applyIcon(next);
 			});
 		}
 	})();

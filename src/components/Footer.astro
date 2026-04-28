@@ -1,20 +1,21 @@
 ---
-import { AUTHOR, AUTHOR_URL, SITE_TITLE } from '../consts';
+import { GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
+import SocialIcon from './SocialIcon.astro';
 import { url } from '../utils/url';
 const today = new Date();
 ---
 
-<footer class="mt-16 border-t border-[color:var(--color-border)] py-8 text-sm text-[color:var(--color-muted)]">
-	<div class="mx-auto flex max-w-3xl flex-col items-center justify-between gap-3 px-4 sm:flex-row">
-		<p>
-			© {today.getFullYear()} {SITE_TITLE} ·
-			<a href={AUTHOR_URL} class="hover:text-[color:var(--color-accent)] hover:underline" target="_blank" rel="noopener noreferrer">
-				{AUTHOR}
-			</a>
-		</p>
-		<div class="flex items-center gap-4">
-			<a href={url('/rss.xml')} class="hover:text-[color:var(--color-accent)] hover:underline">RSS</a>
-			<a href={AUTHOR_URL} class="hover:text-[color:var(--color-accent)] hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>
+<footer class="mt-20 border-t border-[color:var(--color-border-strong)] bg-[color:var(--color-bg-elevated)]/40 py-6 font-[family-name:var(--font-mono)] text-xs text-[color:var(--color-muted)]">
+	<div class="mx-auto max-w-3xl px-4">
+		<div class="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+			<SocialIcon href={url('/rss.xml')} label="Feed RSS" icon="rss">rss</SocialIcon>
+			<SocialIcon href={GITHUB_URL} label="GitHub do autor" icon="github">github</SocialIcon>
+			<SocialIcon href={LINKEDIN_URL} label="LinkedIn do autor" icon="linkedin">linkedin</SocialIcon>
+		</div>
+		<div class="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-dashed border-[color:var(--color-border)] pt-4 text-[10px] uppercase tracking-widest">
+			<span class="text-[color:var(--color-prompt)]">[ NORMAL ]</span>
+			<span>{SITE_TITLE} · v0.1 · © {today.getFullYear()}</span>
+			<span class="text-[color:var(--color-amber)]">UTF-8 · pt-BR</span>
 		</div>
 	</div>
 </footer>

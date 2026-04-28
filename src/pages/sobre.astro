@@ -1,21 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { AUTHOR, AUTHOR_URL } from '../consts';
+import { AUTHOR, AUTHOR_HANDLE, AUTHOR_HOST, GITHUB_URL, LINKEDIN_URL } from '../consts';
+import SocialIcon from '../components/SocialIcon.astro';
 import { url } from '../utils/url';
 ---
 
-<BaseLayout title="Sobre" description="Quem mantém o Claude Playbook e como uso o Claude no dia a dia.">
-	<article class="prose">
-		<h1>Sobre</h1>
-
+<BaseLayout title="sobre" description="Quem mantém o Claude Playbook.">
+	<div class="reveal mb-3 font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+		<span class="text-[color:var(--color-prompt)]">$</span> cat <span class="text-[color:var(--color-amber)]">about.md</span>
+	</div>
+	<article class="prose reveal reveal-delay-1">
+		<h1>$ whoami</h1>
 		<p>
-			Sou <strong>{AUTHOR}</strong>, e o <em>Claude Playbook</em> é meu caderno público sobre como tenho usado
-			o Claude no dia a dia — escrevendo código, planejando tarefas, automatizando rotinas.
+			Sou <strong>{AUTHOR}</strong> (<code>{AUTHOR_HANDLE}@{AUTHOR_HOST}</code>), e o <em>claude-playbook</em> é
+			meu caderno público sobre como tenho usado o Claude no dia a dia — escrevendo código, planejando tarefas,
+			automatizando rotinas.
 		</p>
 
 		<p>
 			A ideia aqui não é vender mágica de IA. É mostrar, com exemplo concreto, o que tem funcionado pra mim,
-			o que <em>não</em> funcionou, e por quê. Cada post é uma técnica, fluxo ou ajuste que valeu a pena registrar.
+			o que <em>não</em> funcionou, e por quê. Cada post é uma técnica, fluxo ou ajuste que valeu a pena
+			registrar.
 		</p>
 
 		<h2>O que você vai encontrar</h2>
@@ -28,13 +33,17 @@ import { url } from '../utils/url';
 
 		<h2>Como acompanhar</h2>
 		<ul>
-			<li>Assine o <a href={url('/rss.xml')}>RSS</a> para receber novos posts</li>
-			<li>Código-fonte do site no <a href={AUTHOR_URL} target="_blank" rel="noopener">GitHub</a></li>
+			<li>Assine o <a href={url('/rss.xml')}>RSS</a> para receber novos posts no seu leitor de feed</li>
+			<li>Sigam o repositório no <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a> para ver
+				atualizações</li>
 		</ul>
 
 		<h2>Contato</h2>
-		<p>
-			Sugestões, correções ou só pra trocar ideia: abra uma issue no repositório ou me chame pelo GitHub.
-		</p>
+		<p>Sugestões, correções ou só pra trocar ideia:</p>
 	</article>
+	<div class="reveal reveal-delay-2 mt-4 flex flex-wrap gap-2">
+		<SocialIcon href={GITHUB_URL} label="GitHub" icon="github">github</SocialIcon>
+		<SocialIcon href={LINKEDIN_URL} label="LinkedIn" icon="linkedin">linkedin</SocialIcon>
+		<SocialIcon href={url('/rss.xml')} label="RSS" icon="rss">rss</SocialIcon>
+	</div>
 </BaseLayout>

@@ -5,17 +5,25 @@ import ThemeToggle from './ThemeToggle.astro';
 import { url } from '../utils/url';
 ---
 
-<header class="border-b border-[color:var(--color-border)]">
-	<nav class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4">
-		<a href={url('/')} class="text-lg font-bold tracking-tight hover:text-[color:var(--color-accent)]">
-			{SITE_TITLE}
-		</a>
-		<div class="flex items-center gap-4">
-			<HeaderLink href={url('/')}>Início</HeaderLink>
-			<HeaderLink href={url('/artigos')}>Artigos</HeaderLink>
-			<HeaderLink href={url('/tags')}>Tags</HeaderLink>
-			<HeaderLink href={url('/sobre')}>Sobre</HeaderLink>
-			<ThemeToggle />
+<header class="border-b border-[color:var(--color-border)] bg-[color:var(--color-bg)]/80 backdrop-blur supports-[backdrop-filter]:bg-[color:var(--color-bg)]/60">
+	<div class="mx-auto max-w-3xl px-4 py-5">
+		<div class="flex flex-wrap items-center justify-between gap-3 font-[family-name:var(--font-mono)]">
+			<a href={url('/')} class="group inline-flex items-baseline gap-1.5 text-sm sm:text-base">
+				<span class="text-[color:var(--color-prompt)] font-bold drop-shadow-[0_0_8px_color-mix(in_oklab,var(--color-prompt)_60%,transparent)]">$</span>
+				<span class="text-[color:var(--color-muted)]">cd</span>
+				<span class="text-[color:var(--color-fg-strong)] font-semibold transition-colors group-hover:text-[color:var(--color-prompt)]">~/{SITE_TITLE}</span>
+			</a>
+			<nav class="flex items-center gap-1 text-sm">
+				<HeaderLink href={url('/')}>início</HeaderLink>
+				<span class="text-[color:var(--color-border-strong)]">·</span>
+				<HeaderLink href={url('/artigos')}>artigos</HeaderLink>
+				<span class="text-[color:var(--color-border-strong)]">·</span>
+				<HeaderLink href={url('/tags')}>tags</HeaderLink>
+				<span class="text-[color:var(--color-border-strong)]">·</span>
+				<HeaderLink href={url('/sobre')}>sobre</HeaderLink>
+				<span class="ml-2"></span>
+				<ThemeToggle />
+			</nav>
 		</div>
-	</nav>
+	</div>
 </header>

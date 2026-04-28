@@ -7,10 +7,12 @@ export async function GET(context) {
 	const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
 		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 	);
+	const baseSite = new URL(url('/'), context.site).toString();
 	return rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
-		site: context.site,
+		site: baseSite,
+		stylesheet: url('/rss.xsl'),
 		items: posts.map((post) => ({
 			title: post.data.title,
 			description: post.data.description,
