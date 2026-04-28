@@ -32,11 +32,14 @@ Este é um blog estático em pt-BR sobre como uso o Claude no dia a dia. Mantenh
   description: string,
   date: Date,            // formato YYYY-MM-DD
   updated?: Date,
+  category: 'fundamentos' | 'comando' | 'pratica' | 'setup' | 'comparacao',
   tags: string[],
   draft?: boolean,       // posts com draft:true ficam fora do build
   cover?: ImageMetadata
 }
 ```
+
+**Categorias** (sem acento, singular) organizam posts em `/categorias/<slug>`. Mapeamento label/slug em `src/utils/categories.ts`. A build falha se o valor não for um dos 5 acima — não invente nomes novos.
 
 ## Estilo de escrita
 

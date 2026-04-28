@@ -1,39 +1,55 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostCard from '../../components/PostCard.astro';
+import { CATEGORY_LIST } from '../../utils/categories';
 import { url } from '../../utils/url';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+
+const counts = new Map<string, number>();
+for (const p of posts) {
+	counts.set(p.data.category, (counts.get(p.data.category) ?? 0) + 1);
+}
 ---
 
-<BaseLayout title="artigos" description="Todos os artigos do Claude Playbook.">
+<BaseLayout title="artigos" description="Hub de categorias do Claude Playbook.">
 	<header class="mb-8 reveal">
 		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
-			<span class="text-[color:var(--color-prompt)]">$</span> ls -lt <span class="text-[color:var(--color-amber)]">artigos/</span>
+			<span class="text-[color:var(--color-prompt)]">$</span> ls <span class="text-[color:var(--color-amber)]">artigos/</span>
 		</div>
 		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
-			artigos <span class="text-[color:var(--color-muted)]">({posts.length})</span>
+			artigos <span class="text-[color:var(--color-muted)]">({posts.length} no total)</span>
 		</h1>
-	</header>
-	{posts.length === 0 ? (
-		<p class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
-			<span class="text-[color:var(--color-amber)]">›</span> diretório vazio. em breve.
+		<p class="mt-2 text-sm text-[color:var(--color-muted)]">
+			Escolha uma categoria pra começar. Posts dentro de cada uma estão ordenados por data.
 		</p>
-	) : (
-		<div class="reveal reveal-delay-1">
-			{posts.map((post) => (
-				<PostCard
-					href={url(`/artigos/${post.id}`)}
-					title={post.data.title}
-					description={post.data.description}
-					date={post.data.date}
-					tags={post.data.tags}
-					slug={post.id}
-				/>
-			))}
-		</div>
-	)}
+	</header>
+
+	<div class="reveal reveal-delay-1 grid gap-3">
+		{CATEGORY_LIST.map((cat) => {
+			const count = counts.get(cat.key) ?? 0;
+			return (
+				<a
+					href={url(`/categorias/${cat.slug}`)}
+					class="group block rounded border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]/50 p-5 transition-all hover:border-[color:var(--color-prompt)]/60 hover:bg-[color:var(--color-bg-elevated)] hover:shadow-[0_0_24px_color-mix(in_oklab,var(--color-prompt)_10%,transparent)]"
+				>
+					<div class="flex items-baseline justify-between gap-3 font-[family-name:var(--font-mono)]">
+						<div class="flex items-baseline gap-2">
+							<span class="text-[color:var(--color-prompt)]">$</span>
+							<span class="text-[color:var(--color-muted)] text-sm">cd</span>
+							<span class="text-base font-bold text-[color:var(--color-fg-strong)] transition-colors group-hover:text-[color:var(--color-prompt)]">
+								{cat.label.toLowerCase()}/
+							</span>
+						</div>
+						<span class="text-xs text-[color:var(--color-muted)]">
+							{count} {count === 1 ? 'artigo' : 'artigos'}
+						</span>
+					</div>
+					<p class="mt-2 text-sm leading-relaxed text-[color:var(--color-fg)]/75">
+						{cat.tagline}
+					</p>
+				</a>
+			);
+		})}
+	</div>
 </BaseLayout>

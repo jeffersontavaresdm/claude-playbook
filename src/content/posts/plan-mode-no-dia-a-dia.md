@@ -2,6 +2,7 @@
 title: "Plan Mode no dia a dia: quando vale, quando atrapalha"
 description: "Quando o Plan Mode do Claude Code transforma a tarefa em entrega segura — e quando ele só adiciona fricção. Um guia rápido para decidir antes de iniciar a sessão."
 date: 2026-04-27
+category: pratica
 tags: [claude-code, plan-mode, fluxo]
 ---
 

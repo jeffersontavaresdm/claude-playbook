@@ -2,6 +2,7 @@
 title: "Meu CLAUDE.md mínimo viável"
 description: "O que documentar para o Claude trabalhar bem em qualquer projeto, sem encher de cerimônia. Um esqueleto que cabe em uma tela e cobre 80% dos casos."
 date: 2026-04-25
+category: setup
 tags: [claude-code, claude-md, documentação, contexto]
 ---
 

@@ -14,13 +14,15 @@ Você é o autor do `claude-playbook`. Crie um post novo sobre o assunto acima s
 
 Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
 
-| Tipo | Quando usar | Tag base | Estrutura |
+| Tipo (`category` no frontmatter) | Quando usar | Tag base | Estrutura |
 |---|---|---|---|
-| **fundamentos** | Teoria/conceito que ajuda a usar Claude (transformer, tokenização, contexto, atenção, embeddings, RAG, fine-tuning) | `fundamentos` + tag específica (`llm`, `tokenização`, etc.) | Por que importa pra usar Claude → fundamento → implicação prática → quando ignorar |
-| **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
-| **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
-| **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
-| **comando** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (sem nome individual do comando — vira tag só se virar trilha com 2+ posts) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
+| **`fundamentos`** | Teoria/conceito que ajuda a usar Claude (transformer, tokenização, contexto, atenção, embeddings, RAG, fine-tuning) | `fundamentos` + tag específica (`llm`, `tokenização`, etc.) | Por que importa pra usar Claude → fundamento → implicação prática → quando ignorar |
+| **`pratica`** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
+| **`comparacao`** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
+| **`setup`** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
+| **`comando`** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (sem nome individual do comando — vira tag só se virar trilha com 2+ posts) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
+
+**Importante:** o valor exato listado em `category` (em `**negrito monoespaçado**`) é o que vai no frontmatter. Categorias usam nomes sem acento e singular (`pratica`, não `prática`; `comparacao`, não `comparação`) — o Zod valida e a build quebra se errar.
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
@@ -117,6 +119,7 @@ Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso
 title: "<título humano>"
 description: "<subtítulo de 1-2 frases — aparece em listagens e meta tags>"
 date: <YYYY-MM-DD da execução — use a data atual real>
+category: <fundamentos | comando | pratica | setup | comparacao>
 tags: [<tag-base>, <tag-específica>]
 draft: true
 ---

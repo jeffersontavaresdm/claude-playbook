@@ -2,6 +2,7 @@
 title: "Hooks que economizam tempo (e os que aprendi a remover)"
 description: "Três hooks que rodo em todos os projetos com Claude Code, mais dois que parecem boa ideia mas viram ruído. O que automatizar e o que deixar manual."
 date: 2026-04-22
+category: pratica
 tags: [claude-code, hooks, automação, settings]
 ---
 

@@ -10,6 +10,7 @@ const posts = defineCollection({
 			description: z.string(),
 			date: z.coerce.date(),
 			updated: z.coerce.date().optional(),
+			category: z.enum(['fundamentos', 'comando', 'pratica', 'setup', 'comparacao']),
 			tags: z.array(z.string()).default([]),
 			draft: z.boolean().default(false),
 			cover: z.optional(image()),
