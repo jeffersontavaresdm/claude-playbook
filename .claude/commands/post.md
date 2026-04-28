@@ -20,7 +20,7 @@ Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, e
 | **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
 | **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
 | **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
-| **comando** | Slash command ou feature do Claude Code documentada em profundidade (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (ou `feature`) + nome do comando (ex: `clear`, `compact`) | O que é → para que serve → sintaxe → 2-3 exemplos reais de uso → walkthrough passo a passo → quando NÃO usar / pitfalls → comandos relacionados |
+| **comando** | Slash command ou feature do Claude Code documentada em profundidade (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (ou `feature`) + nome do comando (ex: `clear`, `compact`) | O que é → para que serve → sintaxe → 2-3 cenários reais (com comando concreto) → quando NÃO usar / pitfalls → comandos relacionados |
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
