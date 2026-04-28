@@ -3,7 +3,7 @@ title: "/add-dir: trabalhando com múltiplos diretórios na mesma sessão"
 description: "O slash command que expande o escopo do Claude Code sem reiniciar. Quando vale, quando atrapalha, e por que ele não é o mesmo que additionalDirectories."
 date: 2026-04-27
 tags: [claude-code, slash-command, add-dir]
-draft: true
+draft: false
 ---
 
 Comecei o Claude Code em `apps/web`. Dez minutos depois, percebi que precisava ler também o `packages/shared` — porque a função que eu estava ajustando consumia tipos definidos lá.
