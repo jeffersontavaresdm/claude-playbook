@@ -20,7 +20,7 @@ Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, e
 | **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
 | **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
 | **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
-| **comando** | Slash command ou feature do Claude Code documentada em profundidade (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (ou `feature`) + nome do comando (ex: `clear`, `compact`) | O que é → para que serve → sintaxe → 2-3 cenários reais (com comando concreto) → quando NÃO usar / pitfalls → comandos relacionados |
+| **comando** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` + nome (ex: `clear`) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
@@ -61,12 +61,16 @@ Não é tutorial puro. Não é academia. É notebook de quem aplica.
 | Tipo | Palavras | Tempo de leitura |
 |---|---|---|
 | fundamentos | 1500-2000 | ~7-10 min |
-| prática | 1000-1500 | ~5-7 min |
-| comparação | 1000-1500 | ~5-7 min |
-| setup | 800-1200 | ~4-6 min |
-| comando | 800-1200 | ~4-6 min |
+| prática | 800-1200 | ~4-6 min |
+| comparação | 800-1200 | ~4-6 min |
+| setup | 600-1000 | ~3-5 min |
+| comando | 400-700 | ~2-4 min |
 
-**Mais curto bate mais longo.** Densidade > volume. Se o post chegou perto do teto, releia procurando o que pode cortar.
+**Mais curto bate mais longo.** Densidade > volume. Posts de comando devem ler como o post `plan-mode-no-dia-a-dia` (~430 palavras): leitura fluida, decisão ("quando uso / não uso") como espinha dorsal, sem cerimônia.
+
+Posts de fundamentos têm licença pra ser maiores porque teoria precisa de espaço pra explicar.
+
+Se o post chegou perto do teto, releia procurando o que pode cortar.
 
 ### Regra anti-redundância (importante)
 
