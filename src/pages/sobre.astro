@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { AUTHOR, AUTHOR_HANDLE, AUTHOR_HOST, GITHUB_URL, LINKEDIN_URL } from '../consts';
+import { AUTHOR, GITHUB_URL, LINKEDIN_URL } from '../consts';
 import SocialIcon from '../components/SocialIcon.astro';
 ---
 
@@ -11,9 +11,8 @@ import SocialIcon from '../components/SocialIcon.astro';
 	<article class="prose reveal reveal-delay-1">
 		<h1>$ whoami</h1>
 		<p>
-			Sou <strong>{AUTHOR}</strong> (<code>{AUTHOR_HANDLE}@{AUTHOR_HOST}</code>), e o <em>claude-playbook</em> é
-			meu caderno público sobre como tenho usado o Claude no dia a dia — escrevendo código, planejando tarefas,
-			automatizando rotinas.
+			Sou <strong>{AUTHOR}</strong>, e o <em>claude-playbook</em> é meu caderno público sobre como tenho usado o
+			Claude no dia a dia — escrevendo código, planejando tarefas, automatizando rotinas.
 		</p>
 
 		<p>

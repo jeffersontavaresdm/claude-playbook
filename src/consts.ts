@@ -1,6 +1,6 @@
 export const SITE_TITLE = 'claude-playbook';
 export const SITE_DESCRIPTION =
-	'Ideias, fluxos e práticas de como uso o Claude no meu dia a dia — em português.';
+	'Ideias, fluxos e práticas de como uso o Claude no meu dia a dia, mais fundamentos pra entender o que está por baixo.';
 export const AUTHOR = 'Jefferson Tavares';
 export const AUTHOR_HANDLE = 'jefferson';
 export const AUTHOR_HOST = 'playbook';
