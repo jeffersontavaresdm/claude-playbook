@@ -3,7 +3,7 @@ title: "O que é uma LLM (e por que isso muda como você usa o Claude)"
 description: "Modelo de linguagem grande explicado em linguagem prática: como gera texto, por que erra com confiança, e o que isso muda nas suas decisões usando o Claude."
 date: 2026-04-27
 tags: [fundamentos, llm]
-draft: true
+draft: false
 ---
 
 Por muito tempo achei que entender o que é uma LLM era opcional pra usar Claude bem. Mudei de ideia.
