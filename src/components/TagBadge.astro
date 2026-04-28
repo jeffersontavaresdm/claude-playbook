@@ -11,7 +11,7 @@ const slug = tag.toLowerCase().replace(/\s+/g, '-');
 
 <a
 	href={url(`/tags/${slug}`)}
-	class="font-[family-name:var(--font-mono)] inline-flex items-center text-xs text-[color:var(--color-muted)] transition-colors hover:text-[color:var(--color-prompt)] hover:[&_.flag]:text-[color:var(--color-prompt)]"
+	class="group font-[family-name:var(--font-mono)] inline-flex items-center text-xs text-[color:var(--color-muted)] transition-colors"
 >
-	<span class="flag text-[color:var(--color-amber)]">--tag</span><span class="text-[color:var(--color-muted)]">=</span><span class="text-[color:var(--color-fg)]">{tag}</span>{count !== undefined && <span class="ml-0.5 text-[color:var(--color-muted)]">({count})</span>}
+	<span class="text-[color:var(--color-amber)]">--tag</span><span class="text-[color:var(--color-muted)]">=</span><span class="text-[color:var(--color-fg)] underline-offset-4 transition-colors group-hover:text-[color:var(--color-prompt)] group-hover:underline">{tag}</span>{count !== undefined && <span class="ml-0.5 text-[color:var(--color-muted)]">({count})</span>}
 </a>
