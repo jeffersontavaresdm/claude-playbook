@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR, AUTHOR_HANDLE, AUTHOR_HOST, GITHUB_URL, LINKEDIN_URL } from '../consts';
 import SocialIcon from '../components/SocialIcon.astro';
-import { url } from '../utils/url';
 ---
 
 <BaseLayout title="sobre" description="Quem mantém o Claude Playbook.">
@@ -33,7 +32,6 @@ import { url } from '../utils/url';
 
 		<h2>Como acompanhar</h2>
 		<ul>
-			<li>Assine o <a href={url('/rss.xml')}>RSS</a> para receber novos posts no seu leitor de feed</li>
 			<li>Sigam o repositório no <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a> para ver
 				atualizações</li>
 		</ul>
@@ -44,6 +42,5 @@ import { url } from '../utils/url';
 	<div class="reveal reveal-delay-2 mt-4 flex flex-wrap gap-2">
 		<SocialIcon href={GITHUB_URL} label="GitHub" icon="github">github</SocialIcon>
 		<SocialIcon href={LINKEDIN_URL} label="LinkedIn" icon="linkedin">linkedin</SocialIcon>
-		<SocialIcon href={url('/rss.xml')} label="RSS" icon="rss">rss</SocialIcon>
 	</div>
 </BaseLayout>

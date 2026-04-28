@@ -13,6 +13,8 @@ Sem fórmula mágica de IA. Só o que tem funcionado pra mim, o que não funcion
 - Markdown + Content Collections com schema Zod
 - Deploy via GitHub Actions → GitHub Pages
 
+
+
 ## Rodar localmente
 
 ```bash

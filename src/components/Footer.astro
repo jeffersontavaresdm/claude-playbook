@@ -1,14 +1,12 @@
 ---
 import { GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
 import SocialIcon from './SocialIcon.astro';
-import { url } from '../utils/url';
 const today = new Date();
 ---
 
 <footer class="mt-20 border-t border-[color:var(--color-border-strong)] bg-[color:var(--color-bg-elevated)]/40 py-6 font-[family-name:var(--font-mono)] text-xs text-[color:var(--color-muted)]">
 	<div class="mx-auto max-w-3xl px-4">
 		<div class="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-			<SocialIcon href={url('/rss.xml')} label="Feed RSS" icon="rss">rss</SocialIcon>
 			<SocialIcon href={GITHUB_URL} label="GitHub do autor" icon="github">github</SocialIcon>
 			<SocialIcon href={LINKEDIN_URL} label="LinkedIn do autor" icon="linkedin">linkedin</SocialIcon>
 		</div>
