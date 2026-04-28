@@ -54,7 +54,30 @@ Não é tutorial puro. Não é academia. É notebook de quem aplica.
 
 ---
 
-## 4 — Escrever (1500-2000 palavras, ~7-10 min de leitura)
+## 4 — Escrever (tamanho varia por tipo)
+
+**Tamanho-alvo:**
+
+| Tipo | Palavras | Tempo de leitura |
+|---|---|---|
+| fundamentos | 1500-2000 | ~7-10 min |
+| prática | 1000-1500 | ~5-7 min |
+| comparação | 1000-1500 | ~5-7 min |
+| setup | 800-1200 | ~4-6 min |
+| comando | 800-1200 | ~4-6 min |
+
+**Mais curto bate mais longo.** Densidade > volume. Se o post chegou perto do teto, releia procurando o que pode cortar.
+
+### Regra anti-redundância (importante)
+
+Se um exemplo, cenário ou bloco de código **já comunicou** uma ideia, **não escreva uma seção de walkthrough/passo a passo do mesmo padrão**. Isso vira cerimônia e cansa o leitor.
+
+Walkthrough só vale a pena quando mostra algo que o exemplo simples não consegue:
+- Decisões intermediárias do usuário (não-óbvias)
+- Troubleshooting de um caso específico
+- Fluxo com saída de comando real (output observável)
+
+Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso. Não infle.
 
 **Tom da casa (igual em todos os tipos):**
 - 1ª pessoa, pt-BR informal mas técnico — conversa entre devs
