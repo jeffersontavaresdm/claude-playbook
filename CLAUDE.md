@@ -54,8 +54,15 @@ Reutilize tags existentes antes de criar novas. Tags vivas atualmente:
 - `plan-mode`, `hooks`, `skills`, `claude-md`, `settings`
 - `fluxo` — rotinas e modos de trabalho
 - `automação`, `contexto`, `documentação`
+- `fundamentos` — trilha de fundamentos técnicos (LLMs, transformer, tokenização, atenção, etc.) que ajudam a usar Claude melhor
 
 Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
+
+## Fluxo de criação de post (`/post`)
+
+Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza o fluxo completo: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
+
+**Posts conceituais/educacionais** (transformer, tokenização, embeddings, etc.) entram com tag `fundamentos` + tag específica. Sempre ancorar em "por que isso importa pra trabalhar com Claude" → fundamento → implicação prática. Não é tutorial puro nem academia.
 
 ## Convenções de slug
 
