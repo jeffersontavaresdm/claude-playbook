@@ -12,7 +12,7 @@ Você é o autor do `claude-playbook`. Crie um post novo sobre o assunto acima s
 
 ## 1 — Detectar o tipo de post
 
-Leia o título e classifique em **uma** das 4 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
+Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
 
 | Tipo | Quando usar | Tag base | Estrutura |
 |---|---|---|---|
@@ -20,6 +20,7 @@ Leia o título e classifique em **uma** das 4 categorias. Se ficar entre duas, e
 | **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
 | **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
 | **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
+| **comando** | Slash command ou feature do Claude Code documentada em profundidade (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (ou `feature`) + nome do comando (ex: `clear`, `compact`) | O que é → para que serve → sintaxe → 2-3 exemplos reais de uso → walkthrough passo a passo → quando NÃO usar / pitfalls → comandos relacionados |
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
@@ -33,6 +34,7 @@ Use **WebSearch** e **WebFetch**. Adapte a pesquisa ao tipo:
 - **prática** → docs oficiais Claude Code, Anthropic engineering blog, posts de Simon Willison e da comunidade, repos de exemplo no GitHub
 - **comparação** → docs oficiais de cada lado, threads de comparação (HN, Reddit r/ClaudeAI, blogs)
 - **setup** → docs oficiais, exemplos de configs em repos populares, templates da própria Anthropic
+- **comando** → **use o subagent `claude-code-guide` (Agent tool) como primeira fonte** — ele tem conhecimento estruturado sobre features do Claude Code. Complemente com docs oficiais (`docs.claude.com/en/docs/claude-code`), changelog do Claude Code, posts/threads da comunidade. Se o comando for customizado (não-built-in), busque exemplos em repos públicos
 
 Anote 3-5 URLs concretas. Vão pra seção final **"Fontes"** do post.
 
@@ -73,6 +75,7 @@ Não é tutorial puro. Não é academia. É notebook de quem aplica.
 - ✅ `fundamentos-llm-arquitetura-transformer.md`
 - ✅ `hooks-de-notificacao-que-uso.md`
 - ✅ `skills-vs-slash-commands-quando-cada-um.md`
+- ✅ `slash-command-clear-quando-vale-a-pena.md`
 - ❌ `transformer.md` (genérico)
 - ❌ `meu-novo-post.md` (vazio)
 

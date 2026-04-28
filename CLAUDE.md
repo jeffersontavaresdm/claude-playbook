@@ -55,6 +55,7 @@ Reutilize tags existentes antes de criar novas. Tags vivas atualmente:
 - `fluxo` — rotinas e modos de trabalho
 - `automação`, `contexto`, `documentação`
 - `fundamentos` — trilha de fundamentos técnicos (LLMs, transformer, tokenização, atenção, etc.) que ajudam a usar Claude melhor
+- `slash-command` — posts que documentam um slash command (built-in ou custom) em profundidade
 
 Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
 
@@ -62,7 +63,7 @@ Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
 
 Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza a criação de **qualquer tipo de post**: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
 
-O comando classifica o post em uma das 4 categorias e ajusta estrutura/tag:
+O comando classifica o post em uma das 5 categorias e ajusta estrutura/tag:
 
 | Tipo | Para quê | Tag base |
 |---|---|---|
@@ -70,6 +71,7 @@ O comando classifica o post em uma das 4 categorias e ajusta estrutura/tag:
 | **prática** | Fluxos, hooks, técnicas, rotinas | `claude-code` |
 | **comparação** | A vs B (skills vs commands, sonnet vs opus, etc.) | tag de cada lado |
 | **setup** | Configurações, templates (CLAUDE.md, settings.json, etc.) | `settings`/`claude-md`/`documentação` |
+| **comando** | Documentar slash command ou feature do Claude Code (`/clear`, `/compact`, hooks, MCPs, etc.) | `claude-code` + `slash-command` + nome do comando |
 
 Em qualquer tipo: gancho concreto na abertura, decisão prática no fechamento. Tom de notebook de quem aplica, não tutorial nem academia.
 
