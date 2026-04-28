@@ -20,7 +20,7 @@ Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, e
 | **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
 | **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
 | **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
-| **comando** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` + nome (ex: `clear`) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
+| **comando** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (sem nome individual do comando — vira tag só se virar trilha com 2+ posts) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 

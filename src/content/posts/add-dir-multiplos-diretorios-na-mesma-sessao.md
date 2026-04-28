@@ -2,7 +2,7 @@
 title: "/add-dir: trabalhando com múltiplos diretórios na mesma sessão"
 description: "O slash command que expande o escopo do Claude Code sem reiniciar. Quando vale, quando atrapalha."
 date: 2026-04-27
-tags: [claude-code, slash-command, add-dir]
+tags: [claude-code, slash-command]
 draft: false
 ---
 

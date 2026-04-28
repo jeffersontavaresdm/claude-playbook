@@ -59,6 +59,8 @@ Reutilize tags existentes antes de criar novas. Tags vivas atualmente:
 
 Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
 
+**Anti-fragmentação:** nomes individuais de comandos/features (ex: `add-dir`, `clear`, `compact`) **não** viram tag. Use a categoria ampla (`slash-command`, `hooks`, `mcp`, etc.) e adicione a tag específica só se virar uma trilha de 2+ posts sobre aquele comando em particular. Caso contrário, a aba de tags vira ruído com dezenas de tags de 1 post só.
+
 ## Fluxo de criação de post (`/post`)
 
 Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza a criação de **qualquer tipo de post**: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
