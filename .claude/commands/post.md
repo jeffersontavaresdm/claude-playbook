@@ -1,100 +1,108 @@
 ---
-description: Cria um novo post do claude-playbook sobre o assunto fornecido — pesquisa fontes na web, ancora em uso prático com Claude, escreve em pt-BR, salva como rascunho, commita e pusha.
+description: Cria um novo post do claude-playbook sobre o assunto fornecido. Detecta o tipo (fundamentos/prática/comparação/setup), pesquisa fontes, escreve em pt-BR no tom da casa, salva como rascunho, commita e pusha.
 ---
 
 # /post — escrever um novo post do claude-playbook
 
-**Argumentos:** `$ARGUMENTS` (assunto / título do post)
+**Argumentos:** `$ARGUMENTS` (assunto / título do post — qualquer tipo)
 
 Você é o autor do `claude-playbook`. Crie um post novo sobre o assunto acima seguindo este fluxo. Não pule etapas.
 
 ---
 
-## 1 — Pesquisar (3-5 fontes confiáveis)
+## 1 — Detectar o tipo de post
 
-Use **WebSearch** e **WebFetch** para coletar material atualizado. Priorize, nessa ordem:
+Leia o título e classifique em **uma** das 4 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
 
-1. **Papers no arXiv** (Anthropic, DeepMind, OpenAI, Google Research, Meta AI)
-2. **Documentação oficial** (Anthropic docs, OpenAI cookbook, HuggingFace docs)
-3. **Blogs técnicos respeitados** — Lilian Weng (`lilianweng.github.io`), Jay Alammar (`jalammar.github.io`), Simon Willison (`simonwillison.net`), Distill (`distill.pub`), Anthropic Engineering Blog
-4. **Posts de pessoas-referência** no assunto (autores citados nos papers)
+| Tipo | Quando usar | Tag base | Estrutura |
+|---|---|---|---|
+| **fundamentos** | Teoria/conceito que ajuda a usar Claude (transformer, tokenização, contexto, atenção, embeddings, RAG, fine-tuning) | `fundamentos` + tag específica (`llm`, `tokenização`, etc.) | Por que importa pra usar Claude → fundamento → implicação prática → quando ignorar |
+| **prática** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
+| **comparação** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
+| **setup** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
 
-Anote 3-5 URLs concretas. Vão para a seção final **"Fontes"** do post.
-
-Se WebSearch falhar/estiver indisponível, faça WebFetch direto em URLs canônicas conhecidas pelo seu treinamento.
-
----
-
-## 2 — Decidir o framing
-
-**Sempre ancorar em uso prático com Claude.** O leitor é alguém que já usa Claude e quer entender melhor pra usar melhor.
-
-Estrutura mental:
-
-> "por que isso importa pra trabalhar com Claude" → fundamento técnico → **implicação concreta** no fluxo do leitor
-
-Não é tutorial puro nem academia. É "o que precisei entender pra usar a ferramenta melhor".
+Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
 ---
 
-## 3 — Escrever (1500-2000 palavras, ~7-10 min de leitura)
+## 2 — Pesquisar (3-5 fontes confiáveis)
 
-**Tom da casa:**
+Use **WebSearch** e **WebFetch**. Adapte a pesquisa ao tipo:
+
+- **fundamentos** → papers no arXiv, Lilian Weng, Jay Alammar, Distill, blogs de research (Anthropic, DeepMind, OpenAI)
+- **prática** → docs oficiais Claude Code, Anthropic engineering blog, posts de Simon Willison e da comunidade, repos de exemplo no GitHub
+- **comparação** → docs oficiais de cada lado, threads de comparação (HN, Reddit r/ClaudeAI, blogs)
+- **setup** → docs oficiais, exemplos de configs em repos populares, templates da própria Anthropic
+
+Anote 3-5 URLs concretas. Vão pra seção final **"Fontes"** do post.
+
+Se WebSearch falhar/estiver indisponível, use WebFetch direto em URLs canônicas conhecidas.
+
+---
+
+## 3 — Decidir o framing
+
+**Sempre ancorar em uso prático com Claude.** O leitor é alguém que já usa Claude e quer usar melhor.
+
+Em qualquer tipo:
+- Comece com **gancho concreto** — uma pergunta, problema ou fricção real
+- Termine numa **decisão prática** — o leitor sai sabendo o que fazer diferente
+
+Não é tutorial puro. Não é academia. É notebook de quem aplica.
+
+---
+
+## 4 — Escrever (1500-2000 palavras, ~7-10 min de leitura)
+
+**Tom da casa (igual em todos os tipos):**
 - 1ª pessoa, pt-BR informal mas técnico — conversa entre devs
 - Frases curtas. Parágrafos de 1-3 frases
-- Bullets quando ficar mais legível
+- Bullets quando ficar mais legível que prosa
 - Evite jargão de marketing ("revolucionário", "incrível", "game-changer")
-- Códigos com linguagem (` ```ts `, ` ```py `, ` ```bash `, etc.)
-- **Diagramas em ASCII art ou mermaid** (combina com tema terminal)
+- Códigos com linguagem (` ```ts `, ` ```py `, ` ```bash `, ` ```json `)
+- Diagramas em ASCII art ou mermaid (combina com tema terminal)
+- Honestidade sobre incerteza > falsa confiança ("ainda testando", "funciona pra mim, talvez não pra você")
 
-**Estrutura sugerida do post:**
-
-1. **Abertura** (1-2 parágrafos) — gancho concreto: por que aprender isso te ajuda no uso do Claude
-2. **Conceito explicado** — didático, com analogia se possível. Aqui mora o "fundamento"
-3. **Detalhes técnicos relevantes** — só os que sustentam a próxima seção
-4. **Implicações práticas** (a parte mais importante) — como esse fundamento muda decisões que você toma usando Claude. Bullets são bons aqui
-5. **Quando ignorar** (opcional, mas valoriza) — limites do que foi aprendido
-6. **Fontes** — lista das 3-5 URLs
+**Use a estrutura da tabela acima** correspondente ao tipo escolhido. Adapte se o assunto pedir, mas não invente estrutura genérica.
 
 ---
 
-## 4 — Slug e tags
+## 5 — Slug e tags
 
 **Slug:** kebab-case, sem acentos, descritivo, em pt-BR.
 - ✅ `fundamentos-llm-arquitetura-transformer.md`
-- ✅ `tokenizacao-por-que-pt-br-custa-mais.md`
-- ❌ `transformer.md` (genérico demais)
-- ❌ `meu-post-sobre-llms.md` (vazio)
+- ✅ `hooks-de-notificacao-que-uso.md`
+- ✅ `skills-vs-slash-commands-quando-cada-um.md`
+- ❌ `transformer.md` (genérico)
+- ❌ `meu-novo-post.md` (vazio)
 
-**Tag base:** `fundamentos`. Combine com tag específica do tema (ex: `llm`, `tokenização`, `contexto`, `atenção`).
-
-**Reuse tags existentes** antes de criar novas. Lista atual em `CLAUDE.md` §Padrões de tags.
+**Tags:** combine a tag base do tipo (tabela §1) com 1-2 tags específicas. **Reuse tags existentes** antes de criar novas — lista atualizada em `CLAUDE.md` §"Padrões de tags".
 
 ---
 
-## 5 — Frontmatter (obrigatório `draft: true`)
+## 6 — Frontmatter (obrigatório `draft: true`)
 
 ```yaml
 ---
-title: "<título humano, sem aspas no original>"
-description: "<subtítulo de 1-2 frases que aparece em listagens e meta tags>"
+title: "<título humano>"
+description: "<subtítulo de 1-2 frases — aparece em listagens e meta tags>"
 date: <YYYY-MM-DD da execução — use a data atual real>
-tags: [fundamentos, <tag-específica>]
+tags: [<tag-base>, <tag-específica>]
 draft: true
 ---
 ```
 
-`draft: true` é obrigatório no /post. O usuário vai revisar antes de publicar.
+`draft: true` é **obrigatório** no `/post`. O usuário revisa antes de publicar.
 
 ---
 
-## 6 — Salvar
+## 7 — Salvar
 
 Caminho: `src/content/posts/<slug>.md`
 
 ---
 
-## 7 — Validar, commitar, pushar
+## 8 — Validar, commitar, pushar
 
 ```bash
 pnpm build       # garante que o schema bate
@@ -103,16 +111,17 @@ git commit -m "post: rascunho — <título>"
 git push origin main
 ```
 
-A Action vai rodar, mas **o post não aparece no site** porque está como `draft: true`.
+A Action vai rodar, mas **o post não aparece no site** (está como `draft: true`).
 
 ---
 
-## 8 — Reportar ao usuário
+## 9 — Reportar ao usuário
 
 Mensagem final no chat (concisa):
 
 ```
-Rascunho criado: src/content/posts/<slug>.md
+Tipo: <fundamentos | prática | comparação | setup>
+Rascunho: src/content/posts/<slug>.md
 Preview local: http://localhost:4321/claude-playbook/artigos/<slug> (rode `pnpm dev`)
 Fontes: <3-5 links>
 
@@ -123,7 +132,7 @@ Leia e me avise quando aprovar — eu tiro o draft, commito como `feat: publica 
 
 ## Regra associada — quando o usuário aprovar
 
-Se ele disser "publica", "tira o draft", "pode subir" ou equivalente referindo-se a este post:
+Se ele disser "publica", "tira o draft", "pode subir" ou equivalente referindo-se ao post:
 
 1. Edita o frontmatter: troca `draft: true` por `draft: false` (ou remove a linha)
 2. `pnpm build` pra revalidar

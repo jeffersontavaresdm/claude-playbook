@@ -60,9 +60,18 @@ Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
 
 ## Fluxo de criação de post (`/post`)
 
-Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza o fluxo completo: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
+Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza a criação de **qualquer tipo de post**: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
 
-**Posts conceituais/educacionais** (transformer, tokenização, embeddings, etc.) entram com tag `fundamentos` + tag específica. Sempre ancorar em "por que isso importa pra trabalhar com Claude" → fundamento → implicação prática. Não é tutorial puro nem academia.
+O comando classifica o post em uma das 4 categorias e ajusta estrutura/tag:
+
+| Tipo | Para quê | Tag base |
+|---|---|---|
+| **fundamentos** | Teoria que ajuda a usar Claude (transformer, tokenização, atenção, etc.) | `fundamentos` |
+| **prática** | Fluxos, hooks, técnicas, rotinas | `claude-code` |
+| **comparação** | A vs B (skills vs commands, sonnet vs opus, etc.) | tag de cada lado |
+| **setup** | Configurações, templates (CLAUDE.md, settings.json, etc.) | `settings`/`claude-md`/`documentação` |
+
+Em qualquer tipo: gancho concreto na abertura, decisão prática no fechamento. Tom de notebook de quem aplica, não tutorial nem academia.
 
 ## Convenções de slug
 
