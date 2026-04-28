@@ -4,7 +4,6 @@ description: "Dois mecanismos de extensão que parecem fazer a mesma coisa — m
 date: 2026-04-27
 category: comparacao
 tags: [claude-code, skills, slash-command]
-draft: false
 ---
 
 Na minha cabeça, skills e slash commands eram a mesma coisa. Acabei criando o `/post` deste blog como command — funciona, mas não seria a escolha de hoje.

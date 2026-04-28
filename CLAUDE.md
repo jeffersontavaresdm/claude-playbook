@@ -34,7 +34,6 @@ Este é um blog estático em pt-BR sobre como uso o Claude no dia a dia. Mantenh
   updated?: Date,
   category: 'fundamentos' | 'comando' | 'pratica' | 'setup' | 'comparacao',
   tags: string[],
-  draft?: boolean,       // posts com draft:true ficam fora do build
   cover?: ImageMetadata
 }
 ```
@@ -66,7 +65,7 @@ Se uma nova tag aparece em apenas 1 post, espere o segundo antes de promovê-la.
 
 ## Fluxo de criação de post (`/post`)
 
-Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza a criação de **qualquer tipo de post**: pesquisa na web, framing ancorado em uso prático com Claude, escrita 1500-2000 palavras, salva como `draft: true`, commita e pusha. O usuário lê o rascunho e, quando aprovar, pede pra publicar — você troca `draft: true` por `false`, commita e pusha de novo.
+Existe um slash command `/post <assunto>` em `.claude/commands/post.md` que automatiza a criação de **qualquer tipo de post**: pesquisa na web, framing ancorado em uso prático com Claude, escrita, commit e push direto pra produção. Se o usuário não gostar depois da leitura, ele pede ajuste ou remoção.
 
 O comando classifica o post em uma das 5 categorias e ajusta estrutura/tag:
 
@@ -90,7 +89,7 @@ Nome de arquivo do post = slug. Sem acentos, kebab-case, em português:
 ## Branch e deploy
 
 - `main` é a branch principal. Push em main → GitHub Action builda e publica em `https://jeffersontavaresdm.github.io/claude-playbook`
-- Não há ambiente de staging. Para post em rascunho, use `draft: true`
+- Não há ambiente de staging nem rascunho — tudo que entra em `main` vai pro ar. Se um post precisar sair, faça commit removendo o arquivo
 - Antes de push: `pnpm build` deve passar sem warning de schema
 
 ## Anti-padrões

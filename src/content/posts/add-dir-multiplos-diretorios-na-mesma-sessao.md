@@ -4,7 +4,6 @@ description: "O slash command que expande o escopo do Claude Code sem reiniciar.
 date: 2026-04-27
 category: comando
 tags: [claude-code, slash-command]
-draft: false
 ---
 
 `/add-dir <path>` adiciona um diretório externo ao escopo de leitura e edição da **sessão atual** do Claude Code — sem reiniciar. Aceita caminhos relativos, absolutos e `~/`. "Sessão" é literal: vale enquanto a conversa estiver aberta. Encerrou, perdeu.

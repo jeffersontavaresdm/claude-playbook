@@ -4,7 +4,6 @@ description: "Modelo de linguagem grande explicado em linguagem prática: como g
 date: 2026-04-27
 category: fundamentos
 tags: [fundamentos, llm]
-draft: false
 ---
 
 Por muito tempo achei que entender o que é uma LLM era opcional pra usar Claude bem. Mudei de ideia.

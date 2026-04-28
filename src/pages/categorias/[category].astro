@@ -20,7 +20,7 @@ const { category } = Astro.props;
 const meta = CATEGORY_LIST.find((c) => c.key === category);
 if (!meta) throw new Error(`Categoria desconhecida: ${category}`);
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft && data.category === category)).sort(
+const posts = (await getCollection('posts', ({ data }) => data.category === category)).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---

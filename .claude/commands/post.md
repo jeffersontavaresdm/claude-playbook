@@ -1,5 +1,5 @@
 ---
-description: Cria um novo post do claude-playbook sobre o assunto fornecido. Detecta o tipo (fundamentos/prática/comparação/setup), pesquisa fontes, escreve em pt-BR no tom da casa, salva como rascunho, commita e pusha.
+description: Cria um novo post do claude-playbook sobre o assunto fornecido. Detecta o tipo, pesquisa fontes, escreve em pt-BR no tom da casa, salva, commita e pusha direto pra produção.
 ---
 
 # /post — escrever um novo post do claude-playbook
@@ -33,10 +33,10 @@ Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 Use **WebSearch** e **WebFetch**. Adapte a pesquisa ao tipo:
 
 - **fundamentos** → papers no arXiv, Lilian Weng, Jay Alammar, Distill, blogs de research (Anthropic, DeepMind, OpenAI)
-- **prática** → docs oficiais Claude Code, Anthropic engineering blog, posts de Simon Willison e da comunidade, repos de exemplo no GitHub
-- **comparação** → docs oficiais de cada lado, threads de comparação (HN, Reddit r/ClaudeAI, blogs)
+- **pratica** → docs oficiais Claude Code, Anthropic engineering blog, posts de Simon Willison e da comunidade, repos de exemplo no GitHub
+- **comparacao** → docs oficiais de cada lado, threads de comparação (HN, Reddit r/ClaudeAI, blogs)
 - **setup** → docs oficiais, exemplos de configs em repos populares, templates da própria Anthropic
-- **comando** → **use o subagent `claude-code-guide` (Agent tool) como primeira fonte** — ele tem conhecimento estruturado sobre features do Claude Code. Complemente com docs oficiais (`docs.claude.com/en/docs/claude-code`), changelog do Claude Code, posts/threads da comunidade. Se o comando for customizado (não-built-in), busque exemplos em repos públicos
+- **comando** → **use o subagent `claude-code-guide` (Agent tool) como primeira fonte** — ele tem conhecimento estruturado sobre features do Claude Code. Complemente com docs oficiais (`docs.claude.com/en/docs/claude-code`), changelog do Claude Code, posts/threads da comunidade
 
 Anote 3-5 URLs concretas. Vão pra seção final **"Fontes"** do post.
 
@@ -63,8 +63,8 @@ Não é tutorial puro. Não é academia. É notebook de quem aplica.
 | Tipo | Palavras | Tempo de leitura |
 |---|---|---|
 | fundamentos | 1500-2000 | ~7-10 min |
-| prática | 800-1200 | ~4-6 min |
-| comparação | 800-1200 | ~4-6 min |
+| pratica | 800-1200 | ~4-6 min |
+| comparacao | 800-1200 | ~4-6 min |
 | setup | 600-1000 | ~3-5 min |
 | comando | 400-700 | ~2-4 min |
 
@@ -94,7 +94,7 @@ Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso
 - Diagramas em ASCII art ou mermaid (combina com tema terminal)
 - Honestidade sobre incerteza > falsa confiança ("ainda testando", "funciona pra mim, talvez não pra você")
 
-**Use a estrutura da tabela acima** correspondente ao tipo escolhido. Adapte se o assunto pedir, mas não invente estrutura genérica.
+**Use a estrutura da tabela §1** correspondente ao tipo escolhido. Adapte se o assunto pedir, mas não invente estrutura genérica.
 
 ---
 
@@ -112,7 +112,7 @@ Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso
 
 ---
 
-## 6 — Frontmatter (obrigatório `draft: true`)
+## 6 — Frontmatter
 
 ```yaml
 ---
@@ -121,11 +121,10 @@ description: "<subtítulo de 1-2 frases — aparece em listagens e meta tags>"
 date: <YYYY-MM-DD da execução — use a data atual real>
 category: <fundamentos | comando | pratica | setup | comparacao>
 tags: [<tag-base>, <tag-específica>]
-draft: true
 ---
 ```
 
-`draft: true` é **obrigatório** no `/post`. O usuário revisa antes de publicar.
+Sem campo `draft` — todo `/post` publica direto. Se o usuário não gostar depois da leitura, ele pede pra remover ou ajustar.
 
 ---
 
@@ -140,11 +139,11 @@ Caminho: `src/content/posts/<slug>.md`
 ```bash
 pnpm build       # garante que o schema bate
 git add src/content/posts/<slug>.md
-git commit -m "post: rascunho — <título>"
+git commit -m "feat: post — <título>"
 git push origin main
 ```
 
-A Action vai rodar, mas **o post não aparece no site** (está como `draft: true`).
+A Action publica em ~30s. URL final: `https://jeffersontavaresdm.github.io/claude-playbook/artigos/<slug>`.
 
 ---
 
@@ -153,22 +152,10 @@ A Action vai rodar, mas **o post não aparece no site** (está como `draft: true
 Mensagem final no chat (concisa):
 
 ```
-Tipo: <fundamentos | prática | comparação | setup>
-Rascunho: src/content/posts/<slug>.md
-Preview local: http://localhost:4321/claude-playbook/artigos/<slug> (rode `pnpm dev`)
+Tipo: <fundamentos | pratica | comparacao | setup | comando>
+Publicado: src/content/posts/<slug>.md
+URL: https://jeffersontavaresdm.github.io/claude-playbook/artigos/<slug>
 Fontes: <3-5 links>
 
-Leia e me avise quando aprovar — eu tiro o draft, commito como `feat: publica post — <título>` e pusho.
+No ar em ~30s. Lê e me avisa se quiser ajustar ou remover.
 ```
-
----
-
-## Regra associada — quando o usuário aprovar
-
-Se ele disser "publica", "tira o draft", "pode subir" ou equivalente referindo-se ao post:
-
-1. Edita o frontmatter: troca `draft: true` por `draft: false` (ou remove a linha)
-2. `pnpm build` pra revalidar
-3. Commit: `feat: publica post — <título>`
-4. Push em `main`
-5. Confirma com o link público: `https://jeffersontavaresdm.github.io/claude-playbook/artigos/<slug>`
