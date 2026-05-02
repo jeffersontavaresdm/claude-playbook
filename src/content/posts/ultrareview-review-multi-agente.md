@@ -1,7 +1,7 @@
 ---
 title: "/ultrareview: code review multi-agente que roda na nuvem"
 description: "Um esquadrão de agents reviewer corre em paralelo na infra da Anthropic e cada bug é independentemente reproduzido antes de virar relatório. Quando vale trocar pelo /review."
-date: 2026-05-02
+date: 2026-05-02T17:15:00-03:00
 category: comando
 tags: [claude-code, slash-command]
 ---

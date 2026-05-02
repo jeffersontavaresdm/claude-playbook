@@ -1,7 +1,7 @@
 ---
 title: "/schedule e routines: trabalho do Claude que roda sem você"
 description: "O comando /schedule cria 'routines' — agendamentos que rodam na infra da Anthropic, 24/7, sem laptop ligado. Quando vale, quando atrapalha."
-date: 2026-05-02
+date: 2026-05-02T01:07:00-03:00
 category: comando
 tags: [claude-code, slash-command, automação]
 ---

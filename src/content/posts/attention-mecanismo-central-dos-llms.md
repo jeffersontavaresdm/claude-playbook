@@ -1,7 +1,7 @@
 ---
 title: "Attention: o mecanismo central dos LLMs"
 description: "A peça que destravou tudo. Uma analogia primeiro, depois Q/K/V sem matemática pesada, e por que isso muda como o Claude responde aos seus prompts."
-date: 2026-05-02
+date: 2026-05-02T01:42:00-03:00
 category: fundamentos
 tags: [fundamentos, llm]
 ---
