@@ -32,13 +32,13 @@ Este é um blog estático em pt-BR sobre como uso o Claude no dia a dia. Mantenh
   description: string,
   date: Date,            // formato YYYY-MM-DD
   updated?: Date,
-  category: 'fundamentos' | 'comando' | 'pratica' | 'setup' | 'comparacao',
+  category: 'fundamentos' | 'comando' | 'pratica' | 'setup' | 'comparacao' | 'historia' | 'caso' | 'projeto',
   tags: string[],
   cover?: ImageMetadata
 }
 ```
 
-**Categorias** (sem acento, singular) organizam posts em `/categorias/<slug>`. Mapeamento label/slug em `src/utils/categories.ts`. A build falha se o valor não for um dos 5 acima — não invente nomes novos.
+**Categorias** (sem acento, singular) organizam posts em `/categorias/<slug>`. Mapeamento label/slug em `src/utils/categories.ts`. A build falha se o valor não for um dos 8 acima — não invente nomes novos.
 
 ## Estilo de escrita
 
@@ -76,6 +76,9 @@ O comando classifica o post em uma das 5 categorias e ajusta estrutura/tag:
 | **comparação** | A vs B (skills vs commands, sonnet vs opus, etc.) | tag de cada lado |
 | **setup** | Configurações, templates (CLAUDE.md, settings.json, etc.) | `settings`/`claude-md`/`documentação` |
 | **comando** | Documentar slash command ou feature do Claude Code (`/clear`, `/compact`, hooks, MCPs, etc.) | `claude-code` + `slash-command` + nome do comando |
+| **história** | Linha do tempo, papers fundadores, marcos da IA (Turing, attention is all you need) | `historia` + tag específica |
+| **caso** | Case study, post-mortem, análise de produto baseado em IA | `caso` + tag de domínio |
+| **projeto** | Tutorial end-to-end de construção (RAG, agente, MCP server) | `projeto` + tag de tema |
 
 Em qualquer tipo: gancho concreto na abertura, decisão prática no fechamento. Tom de notebook de quem aplica, não tutorial nem academia.
 

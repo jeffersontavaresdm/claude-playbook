@@ -12,7 +12,7 @@ Você é o autor do `claude-playbook`. Crie um post novo sobre o assunto acima s
 
 ## 1 — Detectar o tipo de post
 
-Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
+Leia o título e classifique em **uma** das 8 categorias. Se ficar entre duas, escolha a que melhor responda à pergunta "o que o leitor leva embora?". Se nenhuma encaixar, use a estrutura mais próxima como base e ajuste.
 
 | Tipo (`category` no frontmatter) | Quando usar | Tag base | Estrutura |
 |---|---|---|---|
@@ -20,9 +20,12 @@ Leia o título e classifique em **uma** das 5 categorias. Se ficar entre duas, e
 | **`pratica`** | Fluxos, hooks, técnicas, rotinas que você aplica no dia a dia | `claude-code` + tag específica (`hooks`, `plan-mode`, `skills`, `fluxo`, `automação`) | Problema → como resolvi → trade-offs → o que removi/ajustei |
 | **`comparacao`** | A vs B (skills vs commands, plan mode vs direto, sonnet vs opus, etc.) | tag de cada lado da comparação | Critério de escolha → opção A → opção B (→ C) → quando cada uma → meu default |
 | **`setup`** | Configurações, templates, arquivos de partida (CLAUDE.md, settings.json, hooks.json, .gitignore, etc.) | `settings` ou `claude-md` ou `documentação` | O que precisa cobrir → meu mínimo viável → opcional → exemplo completo |
-| **`comando`** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` (sem nome individual do comando — vira tag só se virar trilha com 2+ posts) | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
+| **`comando`** | Slash command ou feature do Claude Code (`/clear`, `/compact`, `/init`, `/agents`, `/mcp`, hooks, MCPs, etc.) | `claude-code` + `slash-command` | Abertura curta (gancho + tese) → o que é (1-2 frases, com sintaxe inline) → **quando uso** (bullets em negrito + 1 frase cada) → **quando NÃO uso** (bullets) → 1 pitfall ou insight pessoal (opcional, só se acrescenta) → resumindo (2 frases punchy) |
+| **`historia`** | Linha do tempo, evolução, contexto histórico, marcos da IA, papers fundadores (Turing, attention is all you need, surgimento do RAG) | `historia` + tag específica (`llm`, `transformer`, `ia-classica`) | Contexto da época → problema que existia → o que mudou → quem fez → consequência prática hoje |
+| **`caso`** | Case study real, post-mortem, análise de aplicação concreta (levelsio, ChatGPT por dentro, falha de produto baseado em IA) | `caso` + tag de domínio (`micro-saas`, `produto`) | Situação inicial → decisões tomadas → resultado → o que dá pra copiar → o que NÃO dá pra copiar |
+| **`projeto`** | Tutorial de construção end-to-end onde o leitor sai com algo funcionando (primeiro RAG, agente, MCP server, fine-tuning) | `projeto` + tag de tema (`rag`, `agente`, `mcp`) | O que vamos construir → pré-requisitos → passos com código → como testar → variações possíveis → próximos passos |
 
-**Importante:** o valor exato listado em `category` (em `**negrito monoespaçado**`) é o que vai no frontmatter. Categorias usam nomes sem acento e singular (`pratica`, não `prática`; `comparacao`, não `comparação`) — o Zod valida e a build quebra se errar.
+**Importante:** o valor exato listado em `category` (em `**negrito monoespaçado**`) é o que vai no frontmatter. Categorias usam nomes sem acento e singular (`pratica`, não `prática`; `comparacao`, não `comparação`; `historia`, não `história`) — o Zod valida e a build quebra se errar.
 
 Reporte ao usuário (1 linha) qual tipo escolheu e siga.
 
@@ -37,6 +40,9 @@ Use **WebSearch** e **WebFetch**. Adapte a pesquisa ao tipo:
 - **comparacao** → docs oficiais de cada lado, threads de comparação (HN, Reddit r/ClaudeAI, blogs)
 - **setup** → docs oficiais, exemplos de configs em repos populares, templates da própria Anthropic
 - **comando** → **use o subagent `claude-code-guide` (Agent tool) como primeira fonte** — ele tem conhecimento estruturado sobre features do Claude Code. Complemente com docs oficiais (`docs.claude.com/en/docs/claude-code`), changelog do Claude Code, posts/threads da comunidade
+- **historia** → papers originais (arXiv, Google Scholar), Wikipedia (linhas do tempo), entrevistas dos pesquisadores envolvidos, livros de referência (Russell & Norvig, Goodfellow)
+- **caso** → blogs/posts dos protagonistas, threads no Twitter/HN, entrevistas em podcasts, post-mortems públicos, números reportados em fontes confiáveis
+- **projeto** → docs oficiais das libs/APIs que vão ser usadas, repos de exemplo no GitHub (com stars), tutoriais validados (vide número de stars/comentários)
 
 Anote 3-5 URLs concretas. Vão pra seção final **"Fontes"** do post.
 
@@ -62,15 +68,18 @@ Não é tutorial puro. Não é academia. É notebook de quem aplica.
 
 | Tipo | Palavras | Tempo de leitura |
 |---|---|---|
-| fundamentos | 1500-2000 | ~7-10 min |
+| fundamentos | 800-1200 | ~4-6 min |
 | pratica | 800-1200 | ~4-6 min |
 | comparacao | 800-1200 | ~4-6 min |
 | setup | 600-1000 | ~3-5 min |
 | comando | 400-700 | ~2-4 min |
+| historia | 600-900 | ~3-5 min |
+| caso | 600-900 | ~3-5 min |
+| projeto | 1000-1500 | ~5-7 min |
 
-**Mais curto bate mais longo.** Densidade > volume. Posts de comando devem ler como o post `plan-mode-no-dia-a-dia` (~430 palavras): leitura fluida, decisão ("quando uso / não uso") como espinha dorsal, sem cerimônia.
+**Mais curto bate mais longo.** Densidade > volume. Posts devem ler como o post `plan-mode-no-dia-a-dia` (~430 palavras): leitura fluida, decisão ("quando uso / não uso") como espinha dorsal, sem cerimônia.
 
-Posts de fundamentos têm licença pra ser maiores porque teoria precisa de espaço pra explicar.
+Posts de `projeto` são os únicos com licença pra ser maiores — código toma espaço. Mas mesmo neles: corte explicação que repete o que o código já mostra.
 
 Se o post chegou perto do teto, releia procurando o que pode cortar.
 
@@ -105,6 +114,9 @@ Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso
 - ✅ `hooks-de-notificacao-que-uso.md`
 - ✅ `skills-vs-slash-commands-quando-cada-um.md`
 - ✅ `slash-command-clear-quando-vale-a-pena.md`
+- ✅ `historia-attention-is-all-you-need.md`
+- ✅ `caso-levelsio-microsaas-100k-mes.md`
+- ✅ `projeto-primeiro-rag-com-postgres.md`
 - ❌ `transformer.md` (genérico)
 - ❌ `meu-novo-post.md` (vazio)
 
@@ -119,7 +131,7 @@ Se o tema cabe em "aqui está o comando, aqui está quando usar" — fique nisso
 title: "<título humano>"
 description: "<subtítulo de 1-2 frases — aparece em listagens e meta tags>"
 date: <YYYY-MM-DD da execução — use a data atual real>
-category: <fundamentos | comando | pratica | setup | comparacao>
+category: <fundamentos | comando | pratica | setup | comparacao | historia | caso | projeto>
 tags: [<tag-base>, <tag-específica>]
 ---
 ```
@@ -152,7 +164,7 @@ A Action publica em ~30s. URL final: `https://jeffersontavaresdm.github.io/claud
 Mensagem final no chat (concisa):
 
 ```
-Tipo: <fundamentos | pratica | comparacao | setup | comando>
+Tipo: <fundamentos | pratica | comparacao | setup | comando | historia | caso | projeto>
 Publicado: src/content/posts/<slug>.md
 URL: https://jeffersontavaresdm.github.io/claude-playbook/artigos/<slug>
 Fontes: <3-5 links>

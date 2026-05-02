@@ -1,4 +1,12 @@
-export type CategoryKey = 'fundamentos' | 'comando' | 'pratica' | 'setup' | 'comparacao';
+export type CategoryKey =
+	| 'fundamentos'
+	| 'comando'
+	| 'pratica'
+	| 'setup'
+	| 'comparacao'
+	| 'historia'
+	| 'caso'
+	| 'projeto';
 
 export interface CategoryMeta {
 	key: CategoryKey;
@@ -43,6 +51,27 @@ export const CATEGORIES: Record<CategoryKey, CategoryMeta> = {
 		slug: 'comparacoes',
 		tagline: 'A vs B — quando usar cada um',
 		prompt: 'diff comparacoes/',
+	},
+	historia: {
+		key: 'historia',
+		label: 'História',
+		slug: 'historia',
+		tagline: 'Marcos, papers fundadores e linha do tempo da IA',
+		prompt: 'cat historia/',
+	},
+	caso: {
+		key: 'caso',
+		label: 'Casos',
+		slug: 'casos',
+		tagline: 'Case studies, post-mortems e análises de aplicações reais',
+		prompt: 'ls casos/',
+	},
+	projeto: {
+		key: 'projeto',
+		label: 'Projetos',
+		slug: 'projetos',
+		tagline: 'Tutoriais end-to-end de construção (RAG, agentes, MCP)',
+		prompt: 'ls projetos/',
 	},
 };
 
