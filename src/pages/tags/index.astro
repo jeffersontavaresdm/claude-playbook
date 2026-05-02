@@ -10,25 +10,53 @@ for (const post of posts) {
 		tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
 	}
 }
-const tags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+const sorted = Array.from(tagCounts.entries()).sort(
+	(a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+);
+
+const groups: { label: string; hint: string; tags: [string, number][] }[] = [
+	{ label: 'trilhas', hint: '3+ posts', tags: sorted.filter(([, c]) => c >= 3) },
+	{ label: 'recorrentes', hint: '2 posts', tags: sorted.filter(([, c]) => c === 2) },
+	{ label: 'únicas', hint: '1 post', tags: sorted.filter(([, c]) => c === 1) },
+].filter((g) => g.tags.length > 0);
+
+const totalTags = sorted.length;
 ---
 
 <BaseLayout title="tags" description="Todos os assuntos organizados por tag.">
 	<header class="mb-8 reveal">
 		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
-			<span class="text-[color:var(--color-prompt)]">$</span> grep -roh <span class="text-[color:var(--color-amber)]">'tags:'</span> artigos/
+			<span class="text-[color:var(--color-prompt)]">$</span> ls -lh <span class="text-[color:var(--color-amber)]">tags/</span>
 		</div>
 		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
-			tags <span class="text-[color:var(--color-muted)]">({tags.length})</span>
+			tags <span class="text-[color:var(--color-muted)]">({totalTags})</span>
 		</h1>
 	</header>
-	{tags.length === 0 ? (
+
+	{groups.length === 0 ? (
 		<p class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
 			<span class="text-[color:var(--color-amber)]">›</span> nenhuma tag ainda.
 		</p>
 	) : (
-		<div class="reveal reveal-delay-1 flex flex-wrap gap-x-4 gap-y-2 rounded border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]/40 p-4">
-			{tags.map(([tag, count]) => <TagBadge tag={tag} count={count} />)}
+		<div class="reveal reveal-delay-1 space-y-8">
+			{groups.map((group) => (
+				<section>
+					<header class="mb-3 flex items-baseline gap-2 font-[family-name:var(--font-mono)] text-xs">
+						<span class="text-[color:var(--color-muted)]">›</span>
+						<span class="text-[color:var(--color-fg-strong)]">{group.label}/</span>
+						<span class="text-[color:var(--color-muted)]">— {group.hint}</span>
+						<span class="ml-auto text-[color:var(--color-muted)]">{group.tags.length}</span>
+					</header>
+					<ul class="grid grid-cols-1 gap-y-1.5 sm:grid-cols-2">
+						{group.tags.map(([tag, count]) => (
+							<li class="border-l border-[color:var(--color-border)]/60 pl-3 hover:border-[color:var(--color-prompt)]">
+								<TagBadge tag={tag} count={count} />
+							</li>
+						))}
+					</ul>
+				</section>
+			))}
 		</div>
 	)}
 </BaseLayout>
