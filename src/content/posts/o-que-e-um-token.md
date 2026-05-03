@@ -58,11 +58,16 @@ Os preços da Anthropic — `X` dólares por milhão de input, `Y` por milhão d
 
 Implicação prática: prompt curto + resposta longa = você paga muito output. É comum a resposta custar mais que o prompt inteiro, mesmo que o prompt fosse "longo". Pedir "explica em detalhes" é decisão de custo.
 
-### Janela de contexto é em token
+### Janela de contexto é em token (e varia por modelo)
 
-Claude tem 1M de contexto — **1 milhão de tokens, não de palavras**. Em português, isso vira algo como ~500-700 mil palavras. Ainda é muito (4-5 livros médios), mas não é o que parece se você pensa em palavra.
+A janela de contexto é medida em **tokens**, e depende do modelo. Hoje (mai/2026):
 
-E como atenção é quadrática ([detalhe no post sobre arquitetura](/claude-playbook/artigos/arquitetura-transformer-por-baixo-do-claude)), encher os 1M custa caro pelo `n²`. Você quase nunca quer chegar perto.
+- **Opus 4.7** e **Sonnet 4.6**: 1M tokens
+- **Haiku 4.5** e modelos legados (Sonnet 4.5, Opus 4.5, etc.): 200k tokens
+
+1M de tokens em português dá ~500-700 mil palavras (4-5 livros médios). 200k vira ~100-130 mil palavras (um livro). Em palavra "cabe um livro" parece muito; em token a conta encurta rápido se o documento tem código, JSON ou trecho técnico — coisas que tokenizam pior que prosa.
+
+E como atenção é quadrática ([detalhe no post sobre arquitetura](/claude-playbook/artigos/arquitetura-transformer-por-baixo-do-claude)), encher a janela inteira custa caro pelo `n²` independente do modelo. Você quase nunca quer chegar perto.
 
 ### Estimar token de cabeça é furada
 
