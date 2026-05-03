@@ -60,12 +60,14 @@ Implicação prática: prompt curto + resposta longa = você paga muito output. 
 
 ### Janela de contexto é em token (e varia por modelo)
 
-A janela de contexto é medida em **tokens**, e depende do modelo. Hoje (mai/2026):
+A janela é medida em **tokens**, e depende do modelo. Hoje (mai/2026), na API:
 
-- **Opus 4.7** e **Sonnet 4.6**: 1M tokens
-- **Haiku 4.5** e modelos legados (Sonnet 4.5, Opus 4.5, etc.): 200k tokens
+- **Opus 4.7** e **Sonnet 4.6**: suportam até 1M tokens
+- **Haiku 4.5** e modelos legados (Sonnet 4.5, Opus 4.5, etc.): 200k
 
-1M de tokens em português dá ~500-700 mil palavras (4-5 livros médios). 200k vira ~100-130 mil palavras (um livro). Em palavra "cabe um livro" parece muito; em token a conta encurta rápido se o documento tem código, JSON ou trecho técnico — coisas que tokenizam pior que prosa.
+Sutileza prática no Claude Code: o alias `sonnet` resolve pra Sonnet 4.6 em **200k por padrão**. Pra abrir 1M você precisa selecionar o variant `sonnet[1m]` no `/model` (consome extra usage). Só `opus` em planos Max/Team/Enterprise sobe pra 1M automaticamente. Mesmo a API suportando 1M nativo, o cliente decide quando ligar — e o Claude Code decide ser conservador no Sonnet.
+
+1M tokens em português dá ~500-700 mil palavras (4-5 livros médios). 200k vira ~100-130 mil palavras (um livro). Em palavra "cabe um livro" parece muito; em token a conta encurta rápido se o documento tem código, JSON ou trecho técnico — coisas que tokenizam pior que prosa.
 
 E como atenção é quadrática ([detalhe no post sobre arquitetura](/claude-playbook/artigos/arquitetura-transformer-por-baixo-do-claude)), encher a janela inteira custa caro pelo `n²` independente do modelo. Você quase nunca quer chegar perto.
 
