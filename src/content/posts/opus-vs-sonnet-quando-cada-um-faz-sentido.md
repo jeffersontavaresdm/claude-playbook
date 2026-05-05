@@ -1,12 +1,12 @@
 ---
 title: "Opus vs Sonnet: quando cada um faz sentido"
-description: "Por meses paguei Opus achando que era 'Sonnet, mas melhor em tudo'. Não é tão simples. O que muda de fato entre os dois — e quando o extra compensa o preço."
+description: "Por meses usei Opus achando que era 'Sonnet, mas melhor em tudo'. Não é tão simples. O que muda de fato entre os dois — e quando o extra compensa o preço."
 date: 2026-05-05
 category: comparacao
 tags: [claude-code, opus, sonnet]
 ---
 
-Por meses eu paguei Opus achando que era "Sonnet, mas melhor em tudo". Aí olhei a fatura, comparei outputs lado a lado, e fui entender onde a diferença aparece mesmo. Resposta curta: aparece menos do que eu imaginava — e o que pesa não é o benchmark.
+Por meses eu usei Opus achando que era "Sonnet, mas melhor em tudo". Aí olhei a fatura, comparei outputs lado a lado, e fui entender onde a diferença aparece mesmo. Resposta curta: aparece menos do que eu imaginava — e o que pesa não é o benchmark.
 
 Esse post é o que eu queria ter lido antes. Comparação prática entre **Claude Opus 4.7** e **Claude Sonnet 4.6**, sem floreio. Vale igual em claude.ai, Claude Code ou API — a decisão é a mesma.
 
