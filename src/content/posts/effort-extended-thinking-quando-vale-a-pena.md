@@ -88,7 +88,7 @@ Em Opus 4.7 o default é `xhigh`; em Sonnet 4.6 e Opus 4.6, é `high`.
 - **Tarefas curtas e diretas** — se a resposta cabe em 2 linhas, thinking é overhead
 - **Conversas exploratórias** — onde você quer iterar rápido e refinar; effort alto torna o loop pesado
 
-A regra prática: **se você lê a pergunta e já sabe a forma da resposta, effort baixo (ou off) basta**.
+A regra prática: **se você lê a pergunta e já sabe a forma da resposta, effort `low` basta** — ou nem isso: dá pra desligar thinking de vez (`MAX_THINKING_TOKENS=0` no Claude Code, `thinking: {type: "disabled"}` na API, toggle em Search and tools na claude.ai).
 
 ## A matriz que uso na cabeça
 
