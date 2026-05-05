@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:atom="http://www.w3.org/2005/Atom">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:playbook="https://jeffersontavaresdm.github.io/claude-playbook/ns">
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:template match="/">
 		<html lang="pt-BR">
@@ -89,6 +89,28 @@
 					.tag .flag { color: var(--amber); }
 					.tag .eq { color: var(--muted); }
 					.tag .val { color: var(--fg); }
+					nav.pagination {
+						margin-top: 32px;
+						padding-top: 20px;
+						border-top: 1px dashed var(--border);
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						gap: 12px;
+						font-size: 0.85rem;
+					}
+					nav.pagination a {
+						color: var(--muted);
+						text-decoration: none;
+						transition: color .15s;
+					}
+					nav.pagination a:hover { color: var(--prompt); }
+					nav.pagination .disabled { color: var(--border); }
+					nav.pagination .counter {
+						color: var(--muted);
+					}
+					nav.pagination .counter .num { color: var(--amber); }
+					nav.pagination .counter .sep { color: var(--border); }
 					footer {
 						margin-top: 36px;
 						padding-top: 18px;
@@ -132,6 +154,38 @@
 							</div>
 						</article>
 					</xsl:for-each>
+					<xsl:if test="/rss/channel/playbook:totalPages &gt; 1">
+						<nav class="pagination">
+							<xsl:choose>
+								<xsl:when test="/rss/channel/atom:link[@rel='prev']">
+									<a>
+										<xsl:attribute name="href"><xsl:value-of select="/rss/channel/atom:link[@rel='prev']/@href"/></xsl:attribute>
+										← anterior
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<span class="disabled">← anterior</span>
+								</xsl:otherwise>
+							</xsl:choose>
+							<span class="counter">
+								página
+								<span class="num"><xsl:value-of select="/rss/channel/playbook:currentPage"/></span>
+								<span class="sep">/</span>
+								<xsl:value-of select="/rss/channel/playbook:totalPages"/>
+							</span>
+							<xsl:choose>
+								<xsl:when test="/rss/channel/atom:link[@rel='next']">
+									<a>
+										<xsl:attribute name="href"><xsl:value-of select="/rss/channel/atom:link[@rel='next']/@href"/></xsl:attribute>
+										próxima →
+									</a>
+								</xsl:when>
+								<xsl:otherwise>
+									<span class="disabled">próxima →</span>
+								</xsl:otherwise>
+							</xsl:choose>
+						</nav>
+					</xsl:if>
 					<footer>
 						<span class="muted">Gerado por Astro · </span>
 						<a><xsl:attribute name="href"><xsl:value-of select="/rss/channel/link"/></xsl:attribute>voltar ao site →</a>
