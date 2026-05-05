@@ -87,7 +87,7 @@ for (const p of posts) {
 	</div>
 
 	<div id="categories-grid" class="reveal reveal-delay-1 grid gap-3">
-		{CATEGORY_LIST.map((cat) => {
+		{CATEGORY_LIST.filter((cat) => (counts.get(cat.key) ?? 0) > 0).map((cat) => {
 			const count = counts.get(cat.key) ?? 0;
 			return (
 				<a
