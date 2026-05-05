@@ -4,6 +4,24 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+function rehypeOpenInNewTab() {
+	const walk = (node) => {
+		if (node.type === 'element' && node.tagName === 'a') {
+			const href = node.properties?.href;
+			if (typeof href === 'string') {
+				const isPostRef = href.includes('/artigos/');
+				const isExternal = /^https?:\/\//i.test(href);
+				if (isPostRef || isExternal) {
+					node.properties.target = '_blank';
+					node.properties.rel = 'noopener noreferrer';
+				}
+			}
+		}
+		if (node.children) for (const child of node.children) walk(child);
+	};
+	return (tree) => walk(tree);
+}
+
 export default defineConfig({
 	site: 'https://jeffersontavaresdm.github.io',
 	base: '/claude-playbook',
@@ -15,6 +33,7 @@ export default defineConfig({
 			defaultColor: false,
 			wrap: true,
 		},
+		rehypePlugins: [rehypeOpenInNewTab],
 	},
 	fonts: [
 		{
