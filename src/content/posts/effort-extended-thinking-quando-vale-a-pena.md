@@ -121,7 +121,8 @@ Detalhe sutil: mesmo com display omitido (default em Opus 4.7), **você ainda pa
 - **Claude Code, Plan Mode**: effort `high`, sempre. Plano vale o token extra
 - **Claude Code, Opus 4.7**: deixo o default (`xhigh`). Quando uso Opus, é porque o problema pede — não faz sentido segurar
 - **claude.ai**: thinking ligado pra conversa que já começou difícil; desligado pra exploração rápida
-- **API em produção**: effort `low` ou `medium` por padrão; `high` só nos endpoints que sei que precisam (análise complexa, geração de relatório)
+
+Pra quem usa a API em produção, dá pra ir de `low` ou `medium` por padrão e reservar `high` só pros endpoints que pedem (análise complexa, geração de relatório).
 
 E uma palavra mágica que vale lembrar: **`ultrathink`**. Quando estou no Claude Code com effort `medium` mas bati num problema que precisa de mais raciocínio, escrevo "ultrathink, [pergunta]" — empurra só naquele turno, sem mudar a sessão.
 

@@ -86,7 +86,7 @@ No Claude Code: **Sonnet por padrão**, com Opus em duas situações:
 
 Na claude.ai, mesma lógica: começo em Sonnet, escalo pra Opus se a resposta ficou genérica.
 
-Em apps que rodam na API, faço **routing manual**: classificador simples na frente decide qual modelo. Tarefa rotineira → Sonnet. Tarefa complexa → Opus. Não é elegante, mas reduz custo em ~60% sem perder qualidade perceptível.
+Em apps que rodam na API, dá pra fazer **routing manual**: classificador simples na frente decide qual modelo. Tarefa rotineira → Sonnet. Tarefa complexa → Opus. Não é elegante, mas reduz custo em ~60% sem perder qualidade perceptível.
 
 ## A intuição que demorei a calibrar
 
