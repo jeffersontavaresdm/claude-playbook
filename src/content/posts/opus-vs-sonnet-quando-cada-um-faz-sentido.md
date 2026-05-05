@@ -18,13 +18,13 @@ Esse post é o que eu queria ter lido antes. Comparação prática entre **Claud
 |---|---|---|
 | Input | $5 / MTok | $3 / MTok |
 | Output | $25 / MTok | $15 / MTok |
-| Janela de contexto | 1M tokens | 1M tokens |
+| Janela de contexto | 1M tokens | 1M tokens (200k default no Claude Code) |
 | Output máximo | 128k tokens | 64k tokens |
 | Latência (Anthropic) | Moderada | Rápida |
 | SWE-bench Verified | 87.6% | 79.6% |
 | SWE-bench Pro | 64.3% | menor |
 
-Opus custa **~67% mais** que Sonnet por token. Janela é igual nos dois (1M). Output máximo é o dobro em Opus, mas raramente é o gargalo.
+Opus custa **~67% mais** que Sonnet por token. A capacidade nativa de janela é igual (1M nos dois), mas no Claude Code o Sonnet roda em 200k por default — precisa do variant `sonnet[1m]` em `/model` pra abrir o restante. Output máximo é o dobro em Opus, mas raramente é o gargalo.
 
 A diferença que mais me chamou atenção foi o SWE-bench Pro — benchmark mais difícil que o Verified, focado em tasks de produção. Foi onde Opus 4.7 deu o salto maior da geração: ~3x mais tasks resolvidas em cenários complexos comparado a Opus 4.6.
 
