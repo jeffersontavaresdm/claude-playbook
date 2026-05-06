@@ -19,7 +19,11 @@ Duas formas:
 - `/model` — abre o seletor com a lista de aliases disponíveis
 - `/model <alias>` — troca direto, sem passar pelo seletor
 
-Aliases que aparecem hoje: `default`, `sonnet`, `opus`, `haiku`, `sonnet[1m]`, `opus[1m]`, `opusplan`. Os IDs canônicos também valem (ex: `claude-opus-4-7`).
+A lista que aparece **varia por plano**. O conjunto que aparece pra todo mundo (Pro, Max, Team, Enterprise, API): `sonnet`, `opus`, `haiku`, `default`, `opusplan`. Pra ver o que está habilitado pra você, roda `/model` sem args.
+
+As variantes de janela 1M (`sonnet[1m]`, `opus[1m]`) só aparecem se o seu plano dá acesso — Max/Team/Enterprise inclusos, Pro/API pagam usage extra.
+
+Os **IDs canônicos** (`claude-opus-4-7`, `claude-sonnet-4-6`) **não aparecem no seletor** em nenhum plano. Pra fixar um ID específico, vai pelo `--model <id>` na CLI, pela env `ANTHROPIC_MODEL`, ou pelo campo `model` no `settings.json`.
 
 ## Quando uso
 
