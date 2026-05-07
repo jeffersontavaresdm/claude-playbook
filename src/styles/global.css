@@ -112,6 +112,12 @@ main {
 	border-radius: 2px;
 }
 
+/* Search input usa focus-within do label como feedback visual — sem ring próprio */
+input[type='search']:focus,
+input[type='search']:focus-visible {
+	outline: none;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
 	width: 10px;
