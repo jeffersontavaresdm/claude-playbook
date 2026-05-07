@@ -54,13 +54,7 @@ Quatro hábitos que resolvem 90% dos casos:
 
 **Forçar releitura quando a alteração é não-trivial.** Em vez de descrever, peço: *"Releia `src/services/billing.ts`, mudei coisa lá."* Mais barato em tokens que escrever o diff inteiro, e elimina ambiguidade.
 
-**Colar `git diff` em sessões E2E longas.** Quando o teste rodou dez vezes e eu fiz três ajustes manuais entre rodadas, em vez de listar cada um, mando o diff completo:
-
-```bash
-git diff > /tmp/diff.patch
-```
-
-E aviso: *"Este é o estado atual em relação ao último commit, considere isso a partir de agora."*
+**Pedir pra ele rodar `git diff` em sessões E2E longas.** Quando o teste rodou dez vezes e eu fiz três ajustes manuais entre rodadas, em vez de listar cada um, mando: *"Roda `git diff` e considera o estado atual a partir daí."* Mais barato em tokens do que descrever as mudanças, e ele puxa direto do disco sem eu virar intermediário.
 
 **`/clear` quando o desencontro é grande.** Se eu refiz metade da implementação manualmente, o contexto antigo virou ruído. Limpar e começar com um *brief* curto + `Read` dos arquivos relevantes sai mais barato que tentar "atualizar" um contexto inteiro.
 
