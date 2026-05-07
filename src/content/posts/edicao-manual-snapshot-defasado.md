@@ -48,13 +48,11 @@ Não é que editar na mão seja "errado" — em correção rápida de uma linha 
 
 ## O que faço hoje
 
-Quatro hábitos que resolvem 90% dos casos:
+Três hábitos que resolvem 90% dos casos:
 
-**Avisar explicitamente.** "Alterei `auth.ts:42` — o `if (!user)` virou `if (!user?.active)`. Releia antes de continuar." Uma frase curta substitui dez minutos de diagnóstico errado depois.
+**Avisar explicitamente quando a mudança é pequena.** "Alterei `auth.ts:42` — o `if (!user)` virou `if (!user?.active)`. Releia antes de continuar." Uma frase curta substitui dez minutos de diagnóstico errado depois.
 
-**Forçar releitura quando a alteração é não-trivial.** Em vez de descrever, peço: *"Releia `src/services/billing.ts`, mudei coisa lá."* Mais barato em tokens que escrever o diff inteiro, e elimina ambiguidade.
-
-**Pedir pra ele rodar `git diff` em sessões E2E longas.** Quando o teste rodou dez vezes e eu fiz três ajustes manuais entre rodadas, em vez de listar cada um, mando: *"Roda `git diff` e considera o estado atual a partir daí."* Mais barato em tokens do que descrever as mudanças, e ele puxa direto do disco sem eu virar intermediário.
+**Mandar ele buscar no disco quando a mudança é maior.** Pra um arquivo só, peço: *"Releia `src/services/billing.ts`, mudei coisa lá."* Em sessão E2E com vários ajustes manuais entre rodadas, escalo pra: *"Roda `git diff` e considera o estado atual a partir daí."* Sai mais barato em tokens que descrever as mudanças, e elimina ambiguidade — ele puxa direto do disco sem eu virar intermediário.
 
 **`/clear` quando o desencontro é grande.** Se eu refiz metade da implementação manualmente, o contexto antigo virou ruído. Limpar e começar com um *brief* curto + `Read` dos arquivos relevantes sai mais barato que tentar "atualizar" um contexto inteiro.
 
