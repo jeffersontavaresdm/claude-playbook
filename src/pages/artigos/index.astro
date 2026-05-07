@@ -52,7 +52,7 @@ const searchData = posts.map((post) => {
 				autocomplete="off"
 				spellcheck="false"
 				placeholder='"título, descrição, tag..."'
-				class="flex-1 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none focus-visible:outline-none"
+				class="flex-1 appearance-none border-0 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
 			/>
 			<span class="text-[color:var(--color-amber)]">artigos/</span>
 		</label>
