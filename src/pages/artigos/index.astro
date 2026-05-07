@@ -42,23 +42,24 @@ const searchData = posts.map((post) => {
 	<section class="reveal reveal-delay-1 mb-6" aria-label="Buscar posts">
 		<label
 			for="post-search"
-			class="flex items-center gap-2 rounded border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]/60 px-3 py-2 font-[family-name:var(--font-mono)] text-sm transition-colors focus-within:border-[color:var(--color-prompt)]/60 focus-within:bg-[color:var(--color-bg-elevated)]"
+			class="flex flex-wrap items-center gap-2 rounded border border-[color:var(--color-border)] bg-[color:var(--color-bg-elevated)]/60 px-3 py-2 font-[family-name:var(--font-mono)] text-sm transition-colors focus-within:border-[color:var(--color-prompt)]/60 focus-within:bg-[color:var(--color-bg-elevated)]"
 		>
 			<span class="text-[color:var(--color-prompt)]">$</span>
 			<span class="text-[color:var(--color-muted)]">grep</span>
-			<span class="flex min-w-0 flex-1 items-center text-[color:var(--color-fg-strong)]">
-				<span aria-hidden="true">"</span>
+			<span class="inline-flex max-w-full items-center">
+				<span class="text-[color:var(--color-muted)]" aria-hidden="true">"</span>
 				<input
 					id="post-search"
 					type="search"
 					autocomplete="off"
 					spellcheck="false"
 					placeholder="título, descrição, tag..."
-					class="min-w-0 flex-1 appearance-none border-0 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+					size="1"
+					class="field-sizing-content max-w-full min-w-0 appearance-none border-0 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none focus-visible:outline-none [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
 				/>
-				<span aria-hidden="true">"</span>
+				<span class="text-[color:var(--color-muted)]" aria-hidden="true">"</span>
 			</span>
-			<span class="text-[color:var(--color-amber)]">artigos/</span>
+			<span class="ml-auto text-[color:var(--color-amber)]">artigos/</span>
 		</label>
 		<p
 			id="search-summary"
