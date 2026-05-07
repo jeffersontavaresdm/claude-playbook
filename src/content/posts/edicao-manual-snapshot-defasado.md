@@ -50,9 +50,9 @@ Não é que editar na mão seja "errado" — em correção rápida de uma linha 
 
 Três hábitos que resolvem 90% dos casos:
 
-**Avisar explicitamente quando a mudança é pequena.** *"Alterei `auth.ts:42` — o `if (!user)` virou `if (!user?.active)`, releia antes de continuar"*. Uma frase curta substitui dez minutos de diagnóstico errado depois.
+**Avisar explicitamente quando a mudança é pequena.** *"Alterei `Auth.kt:42` — o `if (user == null)` virou `if (user?.isActive != true)`, releia antes de continuar"*. Uma frase curta substitui dez minutos de diagnóstico errado depois.
 
-**Mandar ele buscar no disco quando a mudança é maior.** Pra um arquivo só, peço *"releia `src/services/billing.ts`, mudei coisa lá"*. Em sessão E2E com vários ajustes manuais entre rodadas, escalo pra *"roda `git diff` e considera o estado atual a partir daí"*. Sai mais barato em tokens que descrever as mudanças, e elimina ambiguidade — ele puxa direto do disco sem eu virar intermediário.
+**Mandar ele buscar no disco quando a mudança é maior.** Pra um arquivo só, peço *"releia `services/BillingService.kt`, mudei coisa lá"*. Em sessão E2E com vários ajustes manuais entre rodadas, escalo pra *"roda `git diff` e considera o estado atual a partir daí"*. Sai mais barato em tokens que descrever as mudanças, e elimina ambiguidade — ele puxa direto do disco sem eu virar intermediário.
 
 **`/clear` quando o desencontro é grande.** Se eu refiz metade da implementação manualmente, o contexto antigo virou ruído. Limpar e começar com um *brief* curto + `Read` dos arquivos relevantes sai mais barato que tentar "atualizar" um contexto inteiro.
 

@@ -48,7 +48,7 @@ Em casos piores (texto literário com vocabulário rico, ou jargão específico)
 
 ### Código gasta menos tokens
 
-Identifier comum (`function`, `return`, `const`, `import`, `null`, `true`) é 1 token. Estruturas frequentes (`={`, `};`, `()`, `=>`) também viram tokens próprios. JSON, YAML e markdown se beneficiam: tags de fechamento, chaves, brackets — tudo já fundido.
+Identifier comum (`fun`, `return`, `val`, `import`, `null`, `true`) é 1 token. Estruturas frequentes (`: `, ` = `, `()`, `->`) também viram tokens próprios. JSON, YAML e markdown se beneficiam: tags de fechamento, chaves, brackets — tudo já fundido.
 
 Por isso pedir pra um modelo "explicar esse código em prosa" às vezes custa **mais output** que o input do código original. Prosa tokeniza pior.
 

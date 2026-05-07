@@ -76,7 +76,7 @@ Olha o código abaixo e identifica gargalos de performance.
 - Formato da resposta: <linha> | <problema> | <fix sugerido>
 
 ## Código
-```ts
+```kt
 [...]
 ```
 ````

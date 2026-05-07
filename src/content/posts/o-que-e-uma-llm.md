@@ -84,7 +84,7 @@ Resultado prático: prefiro **menos contexto bem escolhido** a **muito contexto 
 
 ### Desconfie de fatos específicos
 
-Se peço pro Claude "qual a versão mais recente do React?", ele vai chutar com confiança baseado no treinamento dele (que tem corte). Pra fatos que mudam, sempre confirmo com fonte externa — ou peço pro modelo usar uma ferramenta que verifica (web search, leitura de docs reais).
+Se peço pro Claude "qual a versão mais recente do Spring Boot?", ele vai chutar com confiança baseado no treinamento dele (que tem corte). Pra fatos que mudam, sempre confirmo com fonte externa — ou peço pro modelo usar uma ferramenta que verifica (web search, leitura de docs reais).
 
 ### Exemplos > descrições
 
@@ -94,7 +94,7 @@ Como o modelo é, no fundo, um preditor de padrão, **mostrar é mais eficaz que
 
 prefira:
 
-> "Padrão a seguir: `const userName = ...` (camelCase). Comentários assim: `// fetches user from API` (curto, presente)."
+> "Padrão a seguir: `val userName = ...` (camelCase). Comentários assim: `// busca usuário da API` (curto, presente)."
 
 Padrões concretos viram peso direto na predição. Descrições abstratas viram instrução vaga.
 

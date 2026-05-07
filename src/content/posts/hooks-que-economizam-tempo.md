@@ -21,7 +21,7 @@ Aqui está minha curadoria depois de seis meses ajustando.
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "pnpm prettier --write $CLAUDE_FILE_PATHS 2>/dev/null || true" }
+          { "type": "command", "command": "ktlint -F $CLAUDE_FILE_PATHS 2>/dev/null || true" }
         ]
       }
     ]
@@ -29,7 +29,7 @@ Aqui está minha curadoria depois de seis meses ajustando.
 }
 ```
 
-Por quê: o modelo erra indentação ocasionalmente. Format on edit elimina o ruído sem custo. O `|| true` evita falha em arquivos não suportados (binários, markdown sem prettier-plugin, etc.).
+Por quê: o modelo erra indentação ocasionalmente. Format on edit elimina o ruído sem custo. O `|| true` evita falha em arquivos não-Kotlin (markdown, json, configs) que o ktlint não processa.
 
 ### 2. Notificação quando termina
 
@@ -51,7 +51,7 @@ Por quê: deixo tarefas longas rodando e volto. Sem notificação, ou eu fico vi
 {
   "matcher": "Edit|Write",
   "hooks": [
-    { "type": "command", "command": "pnpm tsc --noEmit 2>&1 | tail -5" }
+    { "type": "command", "command": "./gradlew compileKotlin 2>&1 | tail -5" }
   ]
 }
 ```

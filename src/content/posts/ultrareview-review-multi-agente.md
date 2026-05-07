@@ -47,7 +47,7 @@ Cobra como **extra usage** do plano. As primeiras runs em research preview são 
 - **Iteração enquanto codo** — `/review` responde em segundos e não tem custo. `/ultrareview` é overkill pra "isso aqui tá certo?".
 - **Diff pequenininho** — fix de typo, ajuste de copy, mudança de config. `/review` basta.
 - **Draft WIP** — review de código que eu ainda vou trocar é desperdício. Metade dos findings cai junto com o rewrite.
-- **Substituto de CI mecânico** — `/ultrareview` pega bugs lógicos. Não substitui `tsc`, `eslint`, `pytest`. É camada extra, não única.
+- **Substituto de CI mecânico** — `/ultrareview` pega bugs lógicos. Não substitui `compileKotlin`, `ktlint`, JUnit. É camada extra, não única.
 - **Bedrock, Vertex AI, Foundry ou orgs com Zero Data Retention** — só roda na Anthropic API direta.
 
 ## O pitfall que vale saber

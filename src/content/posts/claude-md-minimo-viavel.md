@@ -30,23 +30,23 @@ Hoje meu CLAUDE.md cabe em uma tela. Aqui está o esqueleto.
 
 ## Atalhos
 
-- `pnpm dev` — sobe local
-- `pnpm test:watch` — testes em modo watch
-- `make migrate` — aplica migrations
+- `./gradlew bootRun` — sobe local
+- `./gradlew test --continuous` — testes em modo watch
+- `./gradlew flywayMigrate` — aplica migrations
 ```
 
 É isso. Quatro seções, no máximo 30 linhas.
 
 ## O que *não* entra
 
-- **Padrões óbvios**: "use TypeScript", "siga ESLint". O modelo já vai inferir do código.
+- **Padrões óbvios**: "use Kotlin", "siga ktlint". O modelo já vai inferir do código.
 - **Histórico**: "antes a gente usava X mas migrou pra Y". Isso é git log, não documentação viva.
 - **Wishlist**: "queremos adicionar testes E2E em algum momento". Não é estado atual; só ruído.
 - **Estilo de prosa**: "seja claro e conciso". O modelo já tenta — repetir não muda nada.
 
 ## A regra do "atalhos"
 
-A seção mais útil costuma ser **Atalhos**. Comandos que poupam o Claude de ficar inferindo (`pnpm test` ou `npm test`?). Custo de manter: zero. Benefício: o modelo acerta de primeira em 100% das vezes.
+A seção mais útil costuma ser **Atalhos**. Comandos que poupam o Claude de ficar inferindo (`./gradlew test` ou `gradle test`?). Custo de manter: zero. Benefício: o modelo acerta de primeira em 100% das vezes.
 
 ## Quando expando
 
