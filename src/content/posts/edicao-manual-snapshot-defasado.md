@@ -6,7 +6,7 @@ category: pratica
 tags: [claude-code, fluxo, contexto]
 ---
 
-Tava num teste E2E real. O Claude implementou o fluxo, rodei, achei um problema bobo num trecho — abri no editor, ajustei na mão, segui o teste. Algumas mensagens depois, ele tentou "consertar" o mesmo trecho de novo, com o mesmo bug que eu já tinha tirado. Isso me fez parar e mapear como ele "vê" os arquivos.
+Aconteceu num teste E2E real. O Claude implementou o fluxo, eu rodei, identifiquei um bug num trecho — abri no editor, ajustei na mão, segui. Algumas mensagens depois ele tentou "consertar" o mesmo trecho, com o mesmo bug que eu já tinha tirado. Foi aí que parei pra mapear como ele "vê" os arquivos.
 
 ## O modelo mental certo
 
