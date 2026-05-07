@@ -1,5 +1,5 @@
 ---
-title: "Quando edito na mão, o Claude não sabe"
+title: "Edição manual e o snapshot defasado do Claude"
 description: "Editar arquivo por fora durante uma sessão deixa o Claude operando em cima de um snapshot defasado. Quando isso vira bug fantasma, e o que faço pra realinhar o contexto."
 date: 2026-05-07
 category: pratica
