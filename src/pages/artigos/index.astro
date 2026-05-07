@@ -13,6 +13,17 @@ const counts = new Map<string, number>();
 for (const p of posts) {
 	counts.set(p.data.category, (counts.get(p.data.category) ?? 0) + 1);
 }
+
+const searchData = posts.map((post) => {
+	const cat = CATEGORIES[post.data.category as keyof typeof CATEGORIES];
+	return {
+		id: post.id,
+		title: post.data.title,
+		description: post.data.description,
+		tags: post.data.tags,
+		categoryLabel: cat?.label ?? '',
+	};
+});
 ---
 
 <BaseLayout title="artigos" description="Hub de categorias do Claude Playbook.">
@@ -41,7 +52,7 @@ for (const p of posts) {
 				autocomplete="off"
 				spellcheck="false"
 				placeholder='"título, descrição, tag..."'
-				class="flex-1 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none"
+				class="flex-1 bg-transparent text-[color:var(--color-fg-strong)] placeholder:text-[color:var(--color-border-strong)] focus:outline-none focus-visible:outline-none"
 			/>
 			<span class="text-[color:var(--color-amber)]">artigos/</span>
 		</label>
@@ -52,32 +63,23 @@ for (const p of posts) {
 		></p>
 	</section>
 
-	<div id="search-results" class="reveal reveal-delay-2 hidden">
-		{posts.map((post) => {
-			const cat = CATEGORIES[post.data.category as keyof typeof CATEGORIES];
-			const haystack = [
-				post.data.title,
-				post.data.description,
-				post.data.tags.join(' '),
-				cat?.label ?? '',
-				cat?.slug ?? '',
-				post.id,
-			]
-				.join(' ')
-				.toLowerCase();
-			return (
-				<div data-search-item data-haystack={haystack} class="hidden">
-					<PostCard
-						href={url(`/artigos/${post.id}`)}
-						title={post.data.title}
-						description={post.data.description}
-						date={post.data.date}
-						tags={post.data.tags}
-						slug={post.id}
-					/>
-				</div>
-			);
-		})}
+	<div id="search-results" class="reveal reveal-delay-2 hidden flex-col gap-3">
+		{posts.map((post) => (
+			<div data-search-item data-id={post.id} class="hidden flex-col gap-1">
+				<p
+					data-match-hint
+					class="hidden font-[family-name:var(--font-mono)] text-[11px] text-[color:var(--color-muted)]"
+				></p>
+				<PostCard
+					href={url(`/artigos/${post.id}`)}
+					title={post.data.title}
+					description={post.data.description}
+					date={post.data.date}
+					tags={post.data.tags}
+					slug={post.id}
+				/>
+			</div>
+		))}
 		<p
 			id="search-empty"
 			class="hidden py-6 text-center font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]"
@@ -113,50 +115,129 @@ for (const p of posts) {
 			);
 		})}
 	</div>
+
+	<script type="application/json" id="search-data" is:inline set:html={JSON.stringify(searchData)} />
 </BaseLayout>
 
 <script>
+	import Fuse from 'fuse.js';
+
+	type Doc = {
+		id: string;
+		title: string;
+		description: string;
+		tags: string[];
+		categoryLabel: string;
+	};
+
 	const input = document.getElementById('post-search') as HTMLInputElement | null;
 	const results = document.getElementById('search-results');
 	const categories = document.getElementById('categories-grid');
 	const summary = document.getElementById('search-summary');
 	const empty = document.getElementById('search-empty');
+	const dataEl = document.getElementById('search-data');
 
-	if (input && results && categories && summary && empty) {
-		const items = Array.from(
-			results.querySelectorAll<HTMLElement>('[data-search-item]'),
-		);
+	const FIELD_LABEL: Record<string, string> = {
+		title: 'título',
+		tags: 'tag',
+		description: 'descrição',
+		categoryLabel: 'categoria',
+	};
+
+	if (input && results && categories && summary && empty && dataEl) {
+		const docs: Doc[] = JSON.parse(dataEl.textContent || '[]');
+
+		const fuse = new Fuse(docs, {
+			keys: [
+				{ name: 'title', weight: 0.5 },
+				{ name: 'tags', weight: 0.3 },
+				{ name: 'description', weight: 0.15 },
+				{ name: 'categoryLabel', weight: 0.05 },
+			],
+			threshold: 0.3,
+			ignoreLocation: true,
+			minMatchCharLength: 2,
+			includeMatches: true,
+			includeScore: true,
+		});
+
+		const SCORE_CUTOFF = 0.5;
+
+		const itemsById = new Map<string, HTMLElement>();
+		for (const el of results.querySelectorAll<HTMLElement>('[data-search-item]')) {
+			const id = el.dataset.id;
+			if (id) itemsById.set(id, el);
+		}
+
+		const reset = () => {
+			results.classList.add('hidden');
+			results.classList.remove('flex');
+			categories.classList.remove('hidden');
+			summary.classList.add('hidden');
+			summary.textContent = '';
+			empty.classList.add('hidden');
+			for (const el of itemsById.values()) {
+				el.classList.add('hidden');
+				el.classList.remove('flex');
+				el.style.order = '';
+				const hint = el.querySelector<HTMLElement>('[data-match-hint]');
+				if (hint) {
+					hint.classList.add('hidden');
+					hint.textContent = '';
+				}
+			}
+		};
 
 		const apply = (raw: string) => {
-			const q = raw.trim().toLowerCase();
+			const q = raw.trim();
 			if (!q) {
-				results.classList.add('hidden');
-				categories.classList.remove('hidden');
-				summary.classList.add('hidden');
-				summary.textContent = '';
-				empty.classList.add('hidden');
-				for (const el of items) el.classList.add('hidden');
+				reset();
 				return;
 			}
 
-			let matched = 0;
-			for (const el of items) {
-				const hay = el.dataset.haystack ?? '';
-				const isMatch = hay.includes(q);
-				el.classList.toggle('hidden', !isMatch);
-				if (isMatch) matched++;
+			const hits = fuse.search(q).filter((h) => (h.score ?? 1) <= SCORE_CUTOFF);
+
+			for (const el of itemsById.values()) {
+				el.classList.add('hidden');
+				el.classList.remove('flex');
+				el.style.order = '';
+				const hint = el.querySelector<HTMLElement>('[data-match-hint]');
+				if (hint) {
+					hint.classList.add('hidden');
+					hint.textContent = '';
+				}
 			}
 
+			let matched = 0;
+			hits.forEach((hit, idx) => {
+				const el = itemsById.get(hit.item.id);
+				if (!el) return;
+				el.classList.remove('hidden');
+				el.classList.add('flex');
+				el.style.order = String(idx);
+				matched++;
+
+				const fields = (hit.matches ?? [])
+					.map((m) => FIELD_LABEL[m.key ?? ''] ?? m.key ?? '')
+					.filter(Boolean);
+				const unique = Array.from(new Set(fields));
+				const hint = el.querySelector<HTMLElement>('[data-match-hint]');
+				if (hint && unique.length) {
+					hint.textContent = `› match em ${unique.join(' + ')}`;
+					hint.classList.remove('hidden');
+				}
+			});
+
 			results.classList.remove('hidden');
+			results.classList.add('flex');
 			categories.classList.add('hidden');
 			summary.classList.remove('hidden');
-			summary.textContent = `› ${matched} ${matched === 1 ? 'match' : 'matches'} para "${raw.trim()}"`;
+			summary.textContent = `› ${matched} ${matched === 1 ? 'match' : 'matches'} para "${q}"`;
 			empty.classList.toggle('hidden', matched > 0);
 		};
 
 		input.addEventListener('input', () => apply(input.value));
 
-		// Sync URL ?q= for shareable searches
 		const params = new URLSearchParams(window.location.search);
 		const initial = params.get('q');
 		if (initial) {
@@ -173,3 +254,5 @@ for (const p of posts) {
 		});
 	}
 </script>
+</content>
+</invoke>
