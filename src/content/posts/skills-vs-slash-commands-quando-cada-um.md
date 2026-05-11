@@ -46,6 +46,8 @@ Inclua `#123` quando houver issue relacionada.
 (+ instruções específicas do projeto)
 ```
 
+Outros campos opcionais (`disable-model-invocation: true`, `allowed-tools: [Read, Grep]`, etc.) vão no mesmo bloco, entre os dois `---`. É lá que mora todo o controle de comportamento da skill.
+
 Quando você abre o Claude Code numa pasta, **só o frontmatter entra no contexto inicial** — o Claude vê que existe uma skill chamada `commit-style` e sabe pra que serve, pela `description`. O corpo (tudo abaixo do segundo `---`) **só carrega quando a skill é invocada** — manualmente com `/commit-style` ou quando o próprio modelo decide chamar, ao detectar que o assunto bate com a description.
 
 Implicação prática: você pode ter 30 skills no projeto sem pagar 30× o custo de contexto inicial. Paga só pelas descriptions; o conteúdo entra sob demanda. É por isso que **a description é a parte que mais importa**: descrição mal escrita = Claude não puxa quando deveria, ou puxa quando não devia.
