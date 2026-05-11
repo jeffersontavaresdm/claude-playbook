@@ -16,7 +16,7 @@ Mas tem nuance que vale a pena entender pra decidir caso a caso.
 
 ## Skills, em uma frase
 
-Arquivo `SKILL.md` dentro de `.claude/skills/<nome>/`, com frontmatter YAML + corpo Markdown. Pode ter arquivos auxiliares no mesmo diretório (templates, exemplos, scripts). A `description` no frontmatter carrega no contexto desde o início; o corpo só carrega quando alguém invoca.
+Arquivo `SKILL.md` dentro de `.claude/skills/<nome>/`, com frontmatter YAML + corpo Markdown. Pode ter arquivos auxiliares no mesmo diretório (templates, exemplos, scripts).
 
 Invocação: `/<nome>` manual, **OU** automática pelo Claude quando ele vê algo relevante (a menos que você desligue com `disable-model-invocation: true`).
 
@@ -25,6 +25,32 @@ Invocação: `/<nome>` manual, **OU** automática pelo Claude quando ele vê alg
 Arquivo `.claude/commands/<nome>.md`, mesmo formato (frontmatter + Markdown). Único arquivo, sem suporte oficial a auxiliares. Invocação: só `/<nome>` manual.
 
 Em 2025, commands foram **merged** com skills internamente — continuam funcionando, mas não ganham features novas.
+
+## O que é "frontmatter" — e o que o Claude lê quando
+
+Frontmatter é o bloco de metadados no topo do arquivo `.md`, delimitado por duas linhas de `---`. Dentro dele, pares `chave: valor` em **YAML** (formato de configuração comum, mesmo do `docker-compose.yml` ou GitHub Actions). Pra skill, os dois campos que importam são `name` e `description`.
+
+Um `SKILL.md` mínimo se parece com isso:
+
+```markdown
+---
+name: commit-style
+description: Padrões de mensagem de commit deste projeto.
+  Use quando o usuário pedir pra commitar mudanças.
+---
+
+Use prefixos `feat:`, `fix:`, `chore:`, `refactor:`.
+Primeira linha em até 70 caracteres, modo imperativo.
+Body opcional explica o "porquê", não o "o quê".
+Inclua `#123` quando houver issue relacionada.
+(+ instruções específicas do projeto)
+```
+
+Quando você abre o Claude Code numa pasta, **só o frontmatter entra no contexto inicial** — o Claude vê que existe uma skill chamada `commit-style` e sabe pra que serve, pela `description`. O corpo (tudo abaixo do segundo `---`) **só carrega quando a skill é invocada** — manualmente com `/commit-style` ou quando o próprio modelo decide chamar, ao detectar que o assunto bate com a description.
+
+Implicação prática: você pode ter 30 skills no projeto sem pagar 30× o custo de contexto inicial. Paga só pelas descriptions; o conteúdo entra sob demanda. É por isso que **a description é a parte que mais importa**: descrição mal escrita = Claude não puxa quando deveria, ou puxa quando não devia.
+
+Commands seguem a mesma estrutura (frontmatter + corpo, com as mesmas regras de carregamento), só que sem o passo de "Claude decide invocar sozinho".
 
 ## A diferença que mais importa
 
