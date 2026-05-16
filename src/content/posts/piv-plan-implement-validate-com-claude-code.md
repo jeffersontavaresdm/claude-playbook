@@ -8,7 +8,7 @@ tags: [claude-code, fluxo, plan-mode]
 
 A maior parte das vezes que o Claude erra um patch, o erro não está no plano nem no código. Está na ausência de uma fase explícita pra **conferir** se o que saiu bate com o que eu pedi.
 
-PIV — **Plan, Implement, Validate** — é um mnemônico que circulou no fim de 2025 / início de 2026 na comunidade de agentic coding (Cole Medin, MindStudio). Não é framework novo: é uma releitura do **Explore → Plan → Code → Commit** que a Anthropic já recomenda, com um detalhe importante — Validate vira fase de primeira classe, não rodapé.
+PIV — **Plan, Implement, Validate** — é um mnemônico que circulou no fim de 2025 / início de 2026 na comunidade de agentic coding (Cole Medin, MindStudio). E é um **loop**, não pipeline: as fontes chamam de "PIV loop" justamente porque o Validate pode (e costuma) te devolver pro Plan ou pro Implement. Não é framework novo — é uma releitura do **Explore → Plan → Code → Commit** que a Anthropic já recomenda, com um detalhe importante: Validate vira fase de primeira classe, não rodapé, e o ciclo se fecha em vez de terminar.
 
 Vou explicar o que muda no meu uso.
 
@@ -21,6 +21,23 @@ Vou explicar o que muda no meu uso.
 **Validate.** Confere contra os critérios da fase Plan. Automatizado primeiro (testes, lint, typecheck, regressão) e manual depois (estrutura, segurança, lógica de negócio, edge case que o teste não pegou). Se falhar: volta pro Implement se for bug, ou pro Plan se o requisito foi entendido errado.
 
 Ciclo típico: 15-30 minutos. Feature coerente costuma pedir 3-5 ciclos.
+
+## O loop em dois níveis
+
+O "loop" do PIV acontece em duas escalas:
+
+**Dentro de um ciclo.** Validate é gate, não final. Se falhou por bug, volta pro Implement com o erro como input. Se falhou porque o requisito foi entendido errado, volta pro Plan e o spec é reescrito. Só quando o Validate passa o ciclo encerra.
+
+```
+   ┌──────────────────────────────┐
+   │                              ▼
+ Plan ──► Implement ──► Validate ──► ✓
+   ▲          ▲             │
+   │          └─── bug ─────┤
+   └──── requisito errado ──┘
+```
+
+**Entre ciclos.** Uma feature coerente costuma exigir 3-5 PIVs encadeados. Cada ciclo entrega um pedaço validado; o próximo Plan começa em cima do estado verificado do anterior. É essa cadeia de ciclos curtos que evita o "PIV gigante" que enche contexto e perde o fio.
 
 ## Como mapeia no Explore-Plan-Code-Commit
 
