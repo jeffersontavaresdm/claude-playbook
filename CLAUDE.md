@@ -90,7 +90,7 @@ Aba `/novidades` é um **radar rolante** das novidades de IA/tech dos últimos ~
 - Slash command `/novidades` em `.claude/commands/novidades.md`: busca os últimos 7 dias, dedupe contra o quadro, eu curo (entra/sai) e ele publica.
 - Tamanho máximo em `NOVIDADES_MAX` (`src/consts.ts`, hoje 10). **Cap suave**: semana fraca mostra menos, não enche de filler.
 - Resumo é **escrito**, nunca cópia do texto da fonte (direito autoral — repo público).
-- **Boatos, rumores e vazamentos sempre ficam de fora** — só entra fato confirmado por fonte oficial ou reportagem confiável.
+- **A régua é confirmação:** boato/rumor/especulação fica fora; **vazamento confirmado pode entrar** (reporta o evento + linka a reportagem, sem linkar/reproduzir o material vazado).
 
 ## Convenções de slug
 

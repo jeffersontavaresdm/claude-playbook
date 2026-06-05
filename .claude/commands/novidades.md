@@ -14,7 +14,7 @@ Você mantém o **radar de novidades** do claude-playbook: um quadro rolante das
 - Tamanho máximo = `NOVIDADES_MAX` em `src/consts.ts` (hoje 10). **Cap suave**: se a semana não rende cards realmente notáveis, mostre menos — não encha de filler.
 - Card só sai quando é empurrado pra fora por um melhor/mais novo. Ordena por `data` desc (mais recente no topo; "os últimos" = os mais antigos, no fim da lista).
 - Escopo padrão: **IA em geral** — Claude/Anthropic, OpenAI, Google/Gemini, Meta, modelos, papers relevantes, ferramentas de dev com IA, **política/regulação de IA e segurança/cibersegurança**. `$ARGUMENTS` pode estreitar ou ampliar.
-- **Boatos, rumores e vazamentos: SEMPRE ficam de fora.** Só entra fato confirmado por fonte oficial ou reportagem confiável — nunca especulação de comunidade ou "leak". Na dúvida sobre a data/veracidade, verifique na fonte original antes de incluir.
+- **A régua é confirmação, não a categoria.** Boato, rumor e especulação ficam de fora — inclui "leak" não verificado e palpite de comunidade sobre modelo/feature não anunciado. Mas **vazamento confirmado pode entrar**: se de fato aconteceu e foi verificado por fonte confiável (ex: o código-fonte do Claude Code vazou de verdade), virou fato e vale. Nesse caso, reporte o **evento** e linke a **reportagem confiável** — nunca linke nem reproduza o material vazado (IP de terceiro). Na dúvida sobre veracidade/data, verifique na fonte antes de incluir.
 
 ## 1 — Ler o quadro atual
 
@@ -28,7 +28,7 @@ Priorize por **valor pra quem usa IA pra programar no dia a dia**:
 1. Lançamento/atualização de **modelo** ou de **ferramenta** (Claude Code, IDEs, SDKs, APIs)
 2. Produtos e features grandes
 3. Papers / recursos notáveis
-4. Ruído de mercado/hype → peso baixo (boato e vazamento nem entram — ver regra acima)
+4. Ruído de mercado/hype e especulação não confirmada → peso baixo ou fora (vazamento só entra se confirmado — ver regra acima)
 
 ## 3 — Montar candidatos
 
