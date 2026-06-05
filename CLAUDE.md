@@ -23,6 +23,7 @@ Este é um blog estático em pt-BR sobre como uso o Claude no dia a dia. Mantenh
 - `src/layouts/BaseLayout.astro` — shell de página comum
 - `src/layouts/PostLayout.astro` — layout de post individual
 - `src/styles/global.css` — Tailwind v4 + variáveis de tema (light/dark)
+- `src/data/novidades.json` — quadro do radar `/novidades` (coleção própria, fora do feed de posts)
 
 ## Schema de post
 
@@ -81,6 +82,15 @@ O comando classifica o post em uma das 5 categorias e ajusta estrutura/tag:
 | **projeto** | Tutorial end-to-end de construção (RAG, agente, MCP server) | `projeto` + tag de tema |
 
 Em qualquer tipo: gancho concreto na abertura, decisão prática no fechamento. Tom de notebook de quem aplica, não tutorial nem academia.
+
+## Radar de novidades (`/novidades`)
+
+Aba `/novidades` é um **radar rolante** das novidades de IA/tech dos últimos ~7 dias — não é post, é a notícia mastigada em pt-BR (TL;DR + resumo + link da fonte) pra eu ficar por dentro. Vive na coleção `novidades` (`src/data/novidades.json`), separada dos posts: **não aparece** em `/artigos`, tags, categorias nem RSS.
+
+- Slash command `/novidades` em `.claude/commands/novidades.md`: busca os últimos 7 dias, dedupe contra o quadro, eu curo (entra/sai) e ele publica.
+- Tamanho máximo em `NOVIDADES_MAX` (`src/consts.ts`, hoje 10). **Cap suave**: semana fraca mostra menos, não enche de filler.
+- Resumo é **escrito**, nunca cópia do texto da fonte (direito autoral — repo público).
+- **Boatos, rumores e vazamentos sempre ficam de fora** — só entra fato confirmado por fonte oficial ou reportagem confiável.
 
 ## Convenções de slug
 

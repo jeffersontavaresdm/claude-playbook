@@ -1,0 +1,74 @@
+[
+  {
+    "id": "openai-dreaming-v3-memoria-chatgpt",
+    "titulo": "OpenAI lança Dreaming V3, a nova arquitetura de memória do ChatGPT",
+    "tldr": "Um processo em segundo plano sintetiza o que o ChatGPT sabe de você de forma contínua, sem depender do \"lembre-se disso\".",
+    "resumo": "A Dreaming V3 atualiza a memória do ChatGPT automaticamente a partir das conversas, inclusive corrigindo fatos conforme o tempo passa. A OpenAI diz que ficou cerca de 5× mais barata de servir, o que abre caminho pra levar a memória turbinada ao plano grátis. Começou pelos usuários Plus e Pro nos EUA, com uma página de resumo onde dá pra revisar e editar o que ele guardou.",
+    "fonteNome": "OpenAI",
+    "fonteUrl": "https://openai.com/index/chatgpt-memory-dreaming/",
+    "data": "2026-06-05"
+  },
+  {
+    "id": "openai-gpt-5-5-cyber-uniao-europeia",
+    "titulo": "OpenAI amplia o acesso ao GPT-5.5-Cyber para a União Europeia",
+    "tldr": "Modelo voltado a trabalho autorizado de cibersegurança chega a times vetados, governos e órgãos da UE em preview limitado.",
+    "resumo": "O GPT-5.5-Cyber é uma variante do GPT-5.5 mais permissiva pra tarefas autorizadas de segurança — achar falhas, analisar malware, validar patches. A OpenAI abriu acesso a defensores \"confiáveis\" na Europa via um EU Cyber Action Plan, com verificação de quem pode usar. A Anthropic, por ora, mantém seu modelo equivalente (Mythos) fechado ao público.",
+    "fonteNome": "OpenAI",
+    "fonteUrl": "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber/",
+    "data": "2026-06-05"
+  },
+  {
+    "id": "great-american-ai-act-rascunho-federal",
+    "titulo": "Rascunho do \"Great American AI Act\" quer congelar leis estaduais de IA por 3 anos",
+    "tldr": "Proposta bipartidária de 269 páginas preempta leis estaduais sobre o desenvolvimento de modelos e obriga labs de fronteira a publicar planos de segurança.",
+    "resumo": "Os deputados Jay Obernolte (R) e Lori Trahan (D) apresentaram um discussion draft que tira dos estados o poder de legislar sobre como a IA é construída por 3 anos (estados ainda regulam o uso). Em troca, exige que Anthropic, OpenAI, xAI e Google DeepMind publiquem planos contra riscos catastróficos, reportem incidentes e protejam whistleblowers. Sindicatos já reagiram contra. Ainda é rascunho, não virou lei.",
+    "fonteNome": "Roll Call",
+    "fonteUrl": "https://rollcall.com/2026/06/04/bipartisan-ai-draft-proposes-three-year-preemption-of-state-laws/",
+    "data": "2026-06-04"
+  },
+  {
+    "id": "microsoft-mai-code-1-flash-modelos",
+    "titulo": "Microsoft lança MAI-Code-1-Flash e MAI-Thinking-1 no Build",
+    "tldr": "Primeiros modelos próprios de código e de raciocínio da Microsoft, mirando depender menos da OpenAI e baratear pra devs.",
+    "resumo": "No Build, a Microsoft anunciou o MAI-Code-1-Flash, que gera código de apps e sites a partir de descrição em texto, e o MAI-Thinking-1, um modelo de raciocínio. É o movimento da MS pra ter pilha própria de coding e reduzir a dependência da OpenAI, num mercado onde Anthropic (Claude Code) e OpenAI lideram. Sinaliza mais competição — e pressão de preço — na camada de modelos de programação.",
+    "fonteNome": "CNBC",
+    "fonteUrl": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
+    "data": "2026-06-02"
+  },
+  {
+    "id": "anthropic-uso-programatico-pool-creditos",
+    "titulo": "Anthropic separa o uso programático do Claude em um pool de créditos (vale a partir de 15/jun)",
+    "tldr": "Agent SDK, claude -p e Claude Code em GitHub Actions saem do limite da assinatura e passam a consumir um crédito mensal cobrado a preço de API.",
+    "resumo": "Uso interativo (chat, Claude Code no terminal, Cowork) segue como está. Mas o uso programático ganha um pote mensal separado — US$ 20 no Pro, US$ 100 no Max 5x, US$ 200 no Max 20x — cobrado pelas tarifas padrão de API. Quando o crédito acaba, as chamadas automáticas param (sem fallback nem rollover, a menos que você ligue o overflow). É a terceira mexida da Anthropic na cobrança de uso programático desde janeiro.",
+    "fonteNome": "InfoWorld",
+    "fonteUrl": "https://www.infoworld.com/article/4171274/anthropic-puts-claude-agents-on-a-meter-across-its-subscriptions.html",
+    "data": "2026-06-02"
+  },
+  {
+    "id": "anthropic-glasswing-infraestrutura-critica",
+    "titulo": "Anthropic expande o Project Glasswing para infraestrutura crítica",
+    "tldr": "Programa que usa IA pra achar e corrigir vulnerabilidades chega a ~150 organizações em 15+ países, mirando energia, água, saúde e telecom.",
+    "resumo": "No centro está o Claude Mythos, modelo de segurança que a Anthropic chama de o mais potente dela — já apontou mais de 10 mil vulnerabilidades de severidade alta ou crítica desde abril. A expansão leva o scan de código a operadores de infraestrutura crítica em mais de 15 países. A Anthropic mantém o Mythos fora do acesso público por enquanto, citando risco de uso indevido.",
+    "fonteNome": "Anthropic",
+    "fonteUrl": "https://www.anthropic.com/news/expanding-project-glasswing",
+    "data": "2026-06-02"
+  },
+  {
+    "id": "anthropic-pedido-ipo-sec",
+    "titulo": "Anthropic protocola pedido confidencial de IPO",
+    "tldr": "Dona do Claude entra em review da SEC com valuation de ~US$ 965 bi e receita anualizada de US$ 47 bi.",
+    "resumo": "A Anthropic protocolou de forma confidencial seu pedido de abertura de capital, montando o maior teste de mercado da onda de IA até aqui. Os números reportados — valuation perto de US$ 1 trilhão e receita anualizada de US$ 47 bi vinda das assinaturas do Claude — indicam uma estreia gigante, se o mercado ajudar.",
+    "fonteNome": "CBS News",
+    "fonteUrl": "https://www.cbsnews.com/news/anthropic-ipo-confidential-filing-claude-ai/",
+    "data": "2026-06-01"
+  },
+  {
+    "id": "nvidia-rtx-spark-pc-windows-arm",
+    "titulo": "NVIDIA apresenta o RTX Spark, superchip Arm pra PCs Windows com agentes",
+    "tldr": "Plataforma Windows-on-Arm com GPU Blackwell e 128GB de memória unificada que roda LLMs de 120B localmente, com 1M de contexto.",
+    "resumo": "Anunciado por Jensen Huang na Computex, o RTX Spark combina CPU Arm, GPU Blackwell e 128GB de RAM unificada, com 1 petaflop de desempenho em IA. Roda modelos de 120B parâmetros e agentes localmente, edita vídeo 12K e renderiza cenas 3D pesadas. Vem em laptops de Dell, HP, Lenovo, Asus, MSI e num Surface Ultra da Microsoft, a partir do outono (hemisfério norte) de 2026.",
+    "fonteNome": "NVIDIA",
+    "fonteUrl": "https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark",
+    "data": "2026-06-01"
+  }
+]

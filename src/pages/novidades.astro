@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NovidadeCard from '../components/NovidadeCard.astro';
+import { NOVIDADES_MAX } from '../consts';
+import { url } from '../utils/url';
+
+const items = (await getCollection('novidades'))
+	.sort((a, b) => b.data.data.valueOf() - a.data.data.valueOf())
+	.slice(0, NOVIDADES_MAX);
+---
+
+<BaseLayout
+	title="novidades"
+	description="Radar das novidades mais relevantes de IA e tech dos últimos dias."
+>
+	<header class="mb-8 reveal">
+		<div class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+			<span class="text-[color:var(--color-prompt)]">$</span> tail -f <span class="text-[color:var(--color-amber)]">novidades.log</span>
+		</div>
+		<h1 class="mt-1 font-[family-name:var(--font-mono)] text-2xl font-bold text-[color:var(--color-fg-strong)]">
+			novidades <span class="text-[color:var(--color-muted)]">({items.length} no radar)</span>
+		</h1>
+		<p class="mt-2 text-sm leading-relaxed text-[color:var(--color-muted)]">
+			As novidades de IA e tech que valem a pena dos últimos dias. Quadro rolante: no máximo {NOVIDADES_MAX} —
+			quando entra novidade, a mais antiga sai. Pra contexto e opinião, os
+			<a
+				href={url('/artigos')}
+				class="text-[color:var(--color-prompt)] underline decoration-dotted underline-offset-4 transition-colors hover:text-[color:var(--color-accent-hover)]"
+				>artigos</a
+			>.
+		</p>
+	</header>
+
+	{
+		items.length > 0 ? (
+			<section class="reveal reveal-delay-1 flex flex-col gap-1">
+				{items.map((item) => (
+					<NovidadeCard
+						titulo={item.data.titulo}
+						tldr={item.data.tldr}
+						resumo={item.data.resumo}
+						fonteNome={item.data.fonteNome}
+						fonteUrl={item.data.fonteUrl}
+						data={item.data.data}
+					/>
+				))}
+			</section>
+		) : (
+			<section class="reveal reveal-delay-1 rounded border border-dashed border-[color:var(--color-border-strong)] bg-[color:var(--color-bg-elevated)]/40 p-8 text-center">
+				<p class="font-[family-name:var(--font-mono)] text-sm text-[color:var(--color-muted)]">
+					<span class="text-[color:var(--color-amber)]">›</span> radar vazio. rode{' '}
+					<code class="text-[color:var(--color-prompt)]">/novidades</code> pra preencher.
+				</p>
+			</section>
+		)
+	}
+</BaseLayout>

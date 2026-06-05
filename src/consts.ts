@@ -8,3 +8,6 @@ export const GITHUB_URL = 'https://github.com/jeffersontavaresdm';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/jefferson-tavares/';
 export const SITE_URL = 'https://jeffersontavaresdm.github.io';
 export const BASE_PATH = '/claude-playbook';
+
+// Tamanho máximo do radar de novidades (/novidades). Cap suave: pode ter menos.
+export const NOVIDADES_MAX = 10;
