@@ -27,6 +27,15 @@
     "data": "2026-06-04"
   },
   {
+    "id": "anthropic-mitre-attack-ameacas-ia",
+    "titulo": "Anthropic mapeia um ano de ciberataques com IA no MITRE ATT&CK",
+    "tldr": "Análise de 832 contas banidas mostra que 67% usaram IA pra escrever malware ou preparar o ataque — e que o framework ATT&CK ainda não tem IDs pros comportamentos de ataque autônomo.",
+    "resumo": "A Anthropic cruzou 832 contas banidas por atividade maliciosa (mar/2025 a mar/2026) contra o MITRE ATT&CK, a base clássica de táticas de atacantes. 67,3% usaram IA pra criar malware ou preparar o ataque, e a fatia de atores de risco médio/alto que usam IA pulou de 33% pra 56%. O ponto que chama atenção: orquestração de killchain autônoma e decisões de pivô em tempo real ainda não têm ID no framework — a Anthropic está em conversa com a MITRE pra evoluí-lo.",
+    "fonteNome": "Anthropic",
+    "fonteUrl": "https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack",
+    "data": "2026-06-03"
+  },
+  {
     "id": "microsoft-mai-code-1-flash-modelos",
     "titulo": "Microsoft lança MAI-Code-1-Flash e MAI-Thinking-1 no Build",
     "tldr": "Primeiros modelos próprios de código e de raciocínio da Microsoft, mirando depender menos da OpenAI e baratear pra devs.",
