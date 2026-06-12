@@ -1,5 +1,32 @@
 [
   {
+    "id": "claude-code-sub-agents-aninhados",
+    "titulo": "Claude Code passa a aninhar sub-agents (até 5 níveis) na v2.1.172",
+    "tldr": "Um sub-agent agora pode chamar outro, recursivamente, até 5 níveis de profundidade — mais busca de plugins no marketplace.",
+    "resumo": "A v2.1.172 abre recursão na ferramenta Agent: qualquer sub-agent pode spawnar os seus próprios filhos, com teto fixo de 5 níveis. Veio junto uma barra de busca pra achar plugins no marketplace e correções importantes — sessão em contexto de 1M que travava sem créditos agora compacta sozinha de volta pro limite padrão, e a região AWS passa a ser lida do ~/.aws quando AWS_REGION não está setada. É a mexida mais mão-na-massa da semana pra quem orquestra agentes no terminal.",
+    "fonteNome": "Anthropic",
+    "fonteUrl": "https://code.claude.com/docs/en/changelog",
+    "data": "2026-06-10"
+  },
+  {
+    "id": "claude-fable-5",
+    "titulo": "Anthropic libera o Claude Fable 5, primeira versão pública de um modelo classe-Mythos",
+    "tldr": "O Mythos, antes restrito a parceiros e infraestrutura crítica, ganha uma versão pública com travas duras em áreas de alto risco.",
+    "resumo": "O Fable 5 é uma versão contida do Mythos, o modelo mais potente da Anthropic, que até agora ficava fora do acesso público. Pra liberar, a empresa colocou limites rígidos que bloqueiam respostas em cyber, biologia, química e destilação de modelo — nesses casos ele defere pro Opus 4.8 — depois de mais de mil horas de red-team e jailbreak. Em alguns benchmarks pontuou mais de 10% acima do Opus 4.8 (e 90% no benchmark de analytics da Hex). Chega via API e nos planos Pro, Max, Team e enterprise: grátis até 22/jun, depois cobra créditos (US$ 10 por milhão de tokens de entrada, US$ 50 de saída).",
+    "fonteNome": "TechCrunch",
+    "fonteUrl": "https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/",
+    "data": "2026-06-09"
+  },
+  {
+    "id": "gpt-5-5-instant-default-chatgpt",
+    "titulo": "GPT-5.5 Instant vira o modelo padrão do ChatGPT",
+    "tldr": "Substitui o GPT-5.3 Instant pra todos os usuários, com mais personalização chegando aos planos Go e Free.",
+    "resumo": "A OpenAI promoveu o GPT-5.5 Instant a modelo default do ChatGPT, aposentando o GPT-5.3 Instant pra toda a base. A empresa cita respostas mais precisas e concisas, melhor ajuda em imagem e STEM, uso mais esperto de busca na web e mais contexto pra Plus e Pro. No mesmo 09/jun, melhorias de personalização começaram a chegar aos planos Go e Free.",
+    "fonteNome": "OpenAI",
+    "fonteUrl": "https://openai.com/index/gpt-5-5-instant/",
+    "data": "2026-06-09"
+  },
+  {
     "id": "openai-dreaming-v3-memoria-chatgpt",
     "titulo": "OpenAI lança Dreaming V3, a nova arquitetura de memória do ChatGPT",
     "tldr": "Um processo em segundo plano sintetiza o que o ChatGPT sabe de você de forma contínua, sem depender do \"lembre-se disso\".",
@@ -61,23 +88,5 @@
     "fonteNome": "Anthropic",
     "fonteUrl": "https://www.anthropic.com/news/expanding-project-glasswing",
     "data": "2026-06-02"
-  },
-  {
-    "id": "anthropic-pedido-ipo-sec",
-    "titulo": "Anthropic protocola pedido confidencial de IPO",
-    "tldr": "Dona do Claude entra em review da SEC com valuation de ~US$ 965 bi e receita anualizada de US$ 47 bi.",
-    "resumo": "A Anthropic protocolou de forma confidencial seu pedido de abertura de capital, montando o maior teste de mercado da onda de IA até aqui. Os números reportados — valuation perto de US$ 1 trilhão e receita anualizada de US$ 47 bi vinda das assinaturas do Claude — indicam uma estreia gigante, se o mercado ajudar.",
-    "fonteNome": "CBS News",
-    "fonteUrl": "https://www.cbsnews.com/news/anthropic-ipo-confidential-filing-claude-ai/",
-    "data": "2026-06-01"
-  },
-  {
-    "id": "nvidia-rtx-spark-pc-windows-arm",
-    "titulo": "NVIDIA apresenta o RTX Spark, superchip Arm pra PCs Windows com agentes",
-    "tldr": "Plataforma Windows-on-Arm com GPU Blackwell e 128GB de memória unificada que roda LLMs de 120B localmente, com 1M de contexto.",
-    "resumo": "Anunciado por Jensen Huang na Computex, o RTX Spark combina CPU Arm, GPU Blackwell e 128GB de RAM unificada, com 1 petaflop de desempenho em IA. Roda modelos de 120B parâmetros e agentes localmente, edita vídeo 12K e renderiza cenas 3D pesadas. Vem em laptops de Dell, HP, Lenovo, Asus, MSI e num Surface Ultra da Microsoft, a partir do outono (hemisfério norte) de 2026.",
-    "fonteNome": "NVIDIA",
-    "fonteUrl": "https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark",
-    "data": "2026-06-01"
   }
 ]
