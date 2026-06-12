@@ -1,9 +1,9 @@
 ---
 title: "Fable 5 e Mythos 5: o que muda (e qual deles eu de fato uso)"
-description: "A Anthropic soltou dois modelos no mesmo dia. A diferença entre eles, como o Fable se compara ao Opus 4.8, o que melhora em código — e se dá pra usar no Pro/Max ou só pagando por token na API."
+description: "A Anthropic soltou dois modelos no mesmo dia. A diferença entre eles, como o Fable se compara ao Opus 4.8, o que melhora em código, quanto custa em token — e se dá pra usar no Pro/Max ou só pagando API."
 date: 2026-06-12
-category: comparacao
-tags: [modelos, claude-code]
+category: caso
+tags: [caso, modelos]
 ---
 
 No dia 9 a Anthropic anunciou dois modelos de uma vez: **Claude Fable 5** e **Claude Mythos 5**. E o Opus 4.8, que era o melhor da casa até então, continua aí.
@@ -86,11 +86,29 @@ Onde eu **não** trocaria por Fable:
 - Agente *unattended* onde alucinação quebra deploy (a calibração do Opus vale mais).
 - Tarefa curta e simples (empate técnico, não justifica o custo).
 
+## Consumo de token e custo: a conta não é só "o dobro"
+
+Na tabela de preço, o Fable sai o dobro do Opus 4.8:
+
+| Modelo | Entrada (1M tokens) | Saída (1M tokens) |
+|---|---|---|
+| Fable 5 | US$ 10 | US$ 50 |
+| Opus 4.8 | US$ 5 | US$ 25 |
+
+Mas "o dobro por token" não é "o dobro de custo na tarefa". Dois fatores puxam pra baixo:
+
+- **Ele gasta menos token pra fazer a mesma coisa.** Anthropic e GitHub relatam que o Fable fecha a mesma tarefa autônoma com **menos tool calls e menos tokens** que os modelos tier-Opus. Numa tarefa agêntica longa, parte do sobrepreço volta em ele ser mais direto — menos ida e volta, menos contexto reprocessado a cada passo.
+- **Otimizações de cobrança no uso por API.** Batch corta entrada e saída pela metade (US$ 5 / US$ 25) pra job sem pressa, e cache de prompt dá 90% de desconto na leitura do que já está cacheado (~US$ 1 / 1M). Quem roda volume programático mexe bastante no custo por aí. (A Anthropic ainda frisa que esse preço é menos da metade do que custava o Mythos Preview.)
+
+O que **não** joga a favor dele é a régua de custo-benefício bruto. Uma análise que rodou os benchmarks botou em ~**16% mais performance por 100% mais custo**. Tradução direta: **o Fable não se paga em tarefa fácil.** Onde ele justifica o dobro é na tarefa longa e difícil, em que aquele +11 no SWE-bench Pro vira retrabalho economizado — não no CRUD do dia a dia.
+
+E tem o lado do plano: ali o Fable **conta ~2x mais pro seu limite de uso** que o Opus (detalho na próxima seção). Então o "consumo" dói de duas formas — dólar por token na API, e cota gasta no plano.
+
 ## A pergunta que mais importa: dá pra usar no Pro/Max ou só na API?
 
 Essa é a parte com data marcada, então repara no calendário. (Escrevo isto em **12/jun**.)
 
-**Via API:** disponível desde o lançamento, model id `claude-fable-5`, pagando por token — **US$ 10 / milhão de entrada e US$ 50 / milhão de saída**. É o dobro do Opus 4.8 (US$ 5 / US$ 25). Batch corta pela metade; cache de prompt dá 90% de desconto na leitura. (A Anthropic frisa que ainda é menos da metade do que custava o Mythos Preview.)
+**Via API:** disponível desde o lançamento, model id `claude-fable-5`, pagando por token (os mesmos US$ 10 / US$ 50 da tabela acima, o dobro do Opus 4.8). Sem janela e sem pegadinha: usou, pagou.
 
 **Nos planos (Pro, Max, Team, Enterprise por assento):** aqui tem janela.
 
@@ -100,6 +118,8 @@ Essa é a parte com data marcada, então repara no calendário. (Escrevo isto em
 - A Anthropic diz que pretende **recolocar o Fable como parte padrão dos planos quando tiver capacidade** — mas não cravou data.
 
 Traduzindo pra decisão: **enquanto escrevo, você tem ~10 dias pra testar o Fable no plano sem pagar a mais.** Depois disso, ou ele volta pro plano (sem data), ou vira pago por crédito. Quem só usa assinatura e não quer mexer com cobrança por token: aproveita a janela agora e reavalia passado o dia 22.
+
+Pra ligar: no Claude Code, `/model`; nos apps, o seletor de modelo — enquanto a janela durar, o Fable 5 deve aparecer lá junto do Opus.
 
 Detalhe técnico: a Anthropic **não cravou o tamanho da janela de contexto** do Fable no anúncio. Mas os benchmarks de contexto longo rodam em 1M tokens, mesma faixa do Opus 4.8 — então provavelmente é 1M também.
 
