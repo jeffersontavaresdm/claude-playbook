@@ -1,5 +1,23 @@
 [
   {
+    "id": "fable-mythos-suspensos-eua",
+    "titulo": "EUA mandam Anthropic suspender Fable 5 e Mythos 5; modelos saem do ar globalmente",
+    "tldr": "Diretiva de controle de exportação barra acesso de estrangeiros (dentro ou fora dos EUA); pra cumprir, a Anthropic desativou os dois modelos pra todos os clientes.",
+    "resumo": "Em 12/jun o Departamento de Comércio dos EUA emitiu uma diretiva de controle de exportação colocando Fable 5 e Mythos 5 sob restrição para qualquer estrangeiro, dentro ou fora do país. Como cumprir isso de forma confiável seria inviável, a Anthropic desligou os dois modelos para toda a base — globalmente, inclusive estrangeiros que trabalham na própria empresa nos EUA. O Fable 5 tinha sido liberado ao público só em 09/jun. O gatilho, segundo o governo, foi um método de jailbreak do Mythos descoberto por outra empresa, tratado como risco de segurança nacional. Não há prazo de retorno.",
+    "fonteNome": "Anthropic",
+    "fonteUrl": "https://www.anthropic.com/news/fable-mythos-access",
+    "data": "2026-06-12"
+  },
+  {
+    "id": "openai-compra-ona",
+    "titulo": "OpenAI compra a Ona (ex-Gitpod) pra rodar agentes do Codex na nuvem",
+    "tldr": "Aquisição traz ambientes de nuvem persistentes ao Codex: o agente continua trabalhando depois que você fecha o laptop.",
+    "resumo": "A OpenAI anunciou em 11/jun a compra da Ona, startup alemã que começou como Gitpod e virou plataforma de ambientes de nuvem para agentes de IA. A tecnologia entra no ecossistema do Codex: dá para delegar tarefas que levam horas ou dias a um agente rodando em nuvem segura, sem ficar preso a uma máquina ou sessão aberta. Valor não revelado e depende de aprovação regulatória. É a aposta da OpenAI na corrida por agentes de código assíncronos, terreno onde Codex e Claude Code disputam.",
+    "fonteNome": "OpenAI",
+    "fonteUrl": "https://openai.com/index/openai-to-acquire-ona/",
+    "data": "2026-06-11"
+  },
+  {
     "id": "claude-code-sub-agents-aninhados",
     "titulo": "Claude Code passa a aninhar sub-agents (até 5 níveis) na v2.1.172",
     "tldr": "Um sub-agent agora pode chamar outro, recursivamente, até 5 níveis de profundidade — mais busca de plugins no marketplace.",
@@ -9,15 +27,6 @@
     "data": "2026-06-10"
   },
   {
-    "id": "claude-fable-5",
-    "titulo": "Anthropic libera o Claude Fable 5, primeira versão pública de um modelo classe-Mythos",
-    "tldr": "O Mythos, antes restrito a parceiros e infraestrutura crítica, ganha uma versão pública com travas duras em áreas de alto risco.",
-    "resumo": "O Fable 5 é uma versão contida do Mythos, o modelo mais potente da Anthropic, que até agora ficava fora do acesso público. Pra liberar, a empresa colocou limites rígidos que bloqueiam respostas em cyber, biologia, química e destilação de modelo — nesses casos ele defere pro Opus 4.8 — depois de mais de mil horas de red-team e jailbreak. Em alguns benchmarks pontuou mais de 10% acima do Opus 4.8 (e 90% no benchmark de analytics da Hex). Chega via API e nos planos Pro, Max, Team e enterprise: grátis até 22/jun, depois cobra créditos (US$ 10 por milhão de tokens de entrada, US$ 50 de saída).",
-    "fonteNome": "TechCrunch",
-    "fonteUrl": "https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/",
-    "data": "2026-06-09"
-  },
-  {
     "id": "gpt-5-5-instant-default-chatgpt",
     "titulo": "GPT-5.5 Instant vira o modelo padrão do ChatGPT",
     "tldr": "Substitui o GPT-5.3 Instant pra todos os usuários, com mais personalização chegando aos planos Go e Free.",
@@ -25,6 +34,24 @@
     "fonteNome": "OpenAI",
     "fonteUrl": "https://openai.com/index/gpt-5-5-instant/",
     "data": "2026-06-09"
+  },
+  {
+    "id": "apple-ios-27-extensions-siri-claude",
+    "titulo": "Apple abre o Siri a IAs de terceiros no WWDC 2026 — Claude vira opção no iPhone",
+    "tldr": "iOS 27 ganha \"Extensions\": dá pra trocar o Siri por Claude, ChatGPT, Gemini ou Grok nos recursos de Apple Intelligence. O próprio Siri foi reconstruído sobre um Gemini customizado.",
+    "resumo": "No keynote de 08/jun, a Apple apresentou o iOS 27 Extensions — um framework com loja própria que abre Siri, Writing Tools e Image Playground a provedores de IA externos. Pela primeira vez dá pra escolher Claude, ChatGPT, Gemini ou Grok como IA padrão do sistema, encerrando o acordo exclusivo com a OpenAI. Em paralelo, a Apple reconstruiu o Siri sobre um modelo Gemini customizado (1,2 trilhão de parâmetros), com arquitetura em três camadas entre on-device, Private Cloud Compute e nuvem. Pra quem usa Claude, é o caminho de ter o modelo direto no celular.",
+    "fonteNome": "The Next Web",
+    "fonteUrl": "https://thenextweb.com/news/apple-wwdc-2026-siri-ai-gemini",
+    "data": "2026-06-08"
+  },
+  {
+    "id": "openai-s1-confidencial-ipo",
+    "titulo": "OpenAI protocola S-1 confidencial e dá o primeiro passo rumo ao IPO",
+    "tldr": "Submissão à SEC vem dias depois de a Anthropic fazer o mesmo, formando um cluster raro de IPOs de IA.",
+    "resumo": "Em 08/jun a OpenAI submeteu um rascunho confidencial de S-1 à SEC — o primeiro passo formal rumo à bolsa. A empresa anunciou ela mesma no X, dizendo que esperava o vazamento. Goldman Sachs e Morgan Stanley são os bancos, com janela de listagem cogitada entre setembro e novembro. Vem menos de uma semana depois de a Anthropic protocolar o seu (01/jun). Timing ainda indefinido — a empresa diz que algumas coisas são mais fáceis de fazer enquanto privada.",
+    "fonteNome": "OpenAI",
+    "fonteUrl": "https://openai.com/index/openai-submits-confidential-s-1/",
+    "data": "2026-06-08"
   },
   {
     "id": "openai-dreaming-v3-memoria-chatgpt",
@@ -61,32 +88,5 @@
     "fonteNome": "Anthropic",
     "fonteUrl": "https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack",
     "data": "2026-06-03"
-  },
-  {
-    "id": "microsoft-mai-code-1-flash-modelos",
-    "titulo": "Microsoft lança MAI-Code-1-Flash e MAI-Thinking-1 no Build",
-    "tldr": "Primeiros modelos próprios de código e de raciocínio da Microsoft, mirando depender menos da OpenAI e baratear pra devs.",
-    "resumo": "No Build, a Microsoft anunciou o MAI-Code-1-Flash, que gera código de apps e sites a partir de descrição em texto, e o MAI-Thinking-1, um modelo de raciocínio. É o movimento da MS pra ter pilha própria de coding e reduzir a dependência da OpenAI, num mercado onde Anthropic (Claude Code) e OpenAI lideram. Sinaliza mais competição — e pressão de preço — na camada de modelos de programação.",
-    "fonteNome": "CNBC",
-    "fonteUrl": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
-    "data": "2026-06-02"
-  },
-  {
-    "id": "anthropic-uso-programatico-pool-creditos",
-    "titulo": "Anthropic separa o uso programático do Claude em um pool de créditos (vale a partir de 15/jun)",
-    "tldr": "Agent SDK, claude -p e Claude Code em GitHub Actions saem do limite da assinatura e passam a consumir um crédito mensal cobrado a preço de API.",
-    "resumo": "Uso interativo (chat, Claude Code no terminal, Cowork) segue como está. Mas o uso programático ganha um pote mensal separado — US$ 20 no Pro, US$ 100 no Max 5x, US$ 200 no Max 20x — cobrado pelas tarifas padrão de API. Quando o crédito acaba, as chamadas automáticas param (sem fallback nem rollover, a menos que você ligue o overflow). É a terceira mexida da Anthropic na cobrança de uso programático desde janeiro.",
-    "fonteNome": "InfoWorld",
-    "fonteUrl": "https://www.infoworld.com/article/4171274/anthropic-puts-claude-agents-on-a-meter-across-its-subscriptions.html",
-    "data": "2026-06-02"
-  },
-  {
-    "id": "anthropic-glasswing-infraestrutura-critica",
-    "titulo": "Anthropic expande o Project Glasswing para infraestrutura crítica",
-    "tldr": "Programa que usa IA pra achar e corrigir vulnerabilidades chega a ~150 organizações em 15+ países, mirando energia, água, saúde e telecom.",
-    "resumo": "No centro está o Claude Mythos, modelo de segurança que a Anthropic chama de o mais potente dela — já apontou mais de 10 mil vulnerabilidades de severidade alta ou crítica desde abril. A expansão leva o scan de código a operadores de infraestrutura crítica em mais de 15 países. A Anthropic mantém o Mythos fora do acesso público por enquanto, citando risco de uso indevido.",
-    "fonteNome": "Anthropic",
-    "fonteUrl": "https://www.anthropic.com/news/expanding-project-glasswing",
-    "data": "2026-06-02"
   }
 ]
